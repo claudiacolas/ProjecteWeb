@@ -7,7 +7,5 @@ from web.models import Brand, Alcohol, Mix, Combination
 
 def principal(request):
     brands = Brand.objects.all()
-    resposta = [brand.name for brand in brands]
-    html = "<br />".join(resposta)
-    return HttpResponse(html)
+    return render(request, 'web/index.html', {"bars": bars})
     
