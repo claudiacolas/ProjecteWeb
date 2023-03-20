@@ -7,5 +7,5 @@ from web.models import Brand, Alcohol, Mix, Combination
 
 def principal(request):
     brands = Brand.objects.all()
-    return render(request, 'web/index.html', {"bars": bars})
+    return render(request, 'web/index.html', {"brands": brands})
     
