@@ -1,0 +1,10 @@
+{{combination.name}}
+
+<ul>
+    {% for alcohol in combination.alcohol_set.all %}
+        <li><a href={% url 'Alcohol' alcohol.id}{{ alcohol.name }}</a></li>
+    {% endfor %}
+    {% for mix in combination.mix_set.all %}
+        <li><a href={% url 'Mix' mix.id}{{ alcohol.name }}</a></li>
+    {% endfor %}
+</ul>

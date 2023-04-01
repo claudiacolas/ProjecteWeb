@@ -1,3 +1,4 @@
+
 """mycombinations URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,12 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import web.views as wv
+import web.views
 
 urlpatterns = [
-    path('', wv.principal),
-    path('brand/<int:brand_id>/',wv.brand,name='brand'),
+    path('', web.views.principal, name='Principal'),
+    path('combination/<int:bar_id>', web.views.combination, name='Combination'),
+    path('alcohol/<int:pk>', web.views.AlcoholView.as_view(), name="Alcohol"),
+    path('mix/<int:pk>', web.views.MixView.as_view(), name="Mix"),
     path("admin/", admin.site.urls),
-    path("alcohol/<int:alcohol_id>",wv.alcohol,name="alcohol"),
-    path("mix/<int:mix_id>", wv.mix, name="mix")
 ]
