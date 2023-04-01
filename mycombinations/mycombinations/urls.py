@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import web.views
+import web.views as wv
 
 urlpatterns = [
-    path('', web.views.principal),
+    path('', wv.principal),
+    path('brand/<int:brand_id>/',wv.brand,name='brand'),
     path("admin/", admin.site.urls),
+    path("alcohol/<int:alcohol_id>",wv.alcohol,name="alcohol"),
+    path("mix/<int:mix_id>", wv.mix, name="mix")
 ]

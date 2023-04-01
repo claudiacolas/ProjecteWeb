@@ -28,4 +28,4 @@ class Combination(models.Model):
     mix = models.ForeignKey(Mix, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
-        return self.name
+        return self.name+"="+self.alcohol+"with"+self.mix

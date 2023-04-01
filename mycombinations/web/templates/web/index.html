@@ -1,7 +1,40 @@
-<h2>PartyHard</h2>
+<style>header {
+  background-color: #FF33C7;
+  color: #fff;
+  padding: 10px;
+}
 
-<ul>
-    {% for brand in brands %}
-        <li>{{ brand.name }}</li>
-    {% endfor %}
-</ul>
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+}
+
+nav a:hover {
+  background-color: #F6BCF2;
+}
+</style>
+<header>
+  <nav>
+    <h3 class="tittle">What will I drink today ?</h3>
+    <ul>
+      {% for bar in bars %}
+      <li><a href={% url 'combination' combination.id %}>{{ combination.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
