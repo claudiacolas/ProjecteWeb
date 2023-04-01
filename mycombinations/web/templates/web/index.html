@@ -1,7 +1,7 @@
 <h2>PartyHard</h2>
 
 <ul>
-    {% for brand in brands %}
-        <li>{{ brand.name }}</li>
+    {% for combination in combinations %}
+        <li><a href={% url 'Bar' bar.id} >{{ combination.name }}</li></a>
     {% endfor %}
 </ul>

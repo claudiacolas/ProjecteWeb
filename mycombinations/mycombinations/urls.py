@@ -19,6 +19,9 @@ from django.urls import path
 import web.views
 
 urlpatterns = [
-    path('', web.views.principal),
+    path('', web.views.principal, name='Principal'),
+    path('combination/<int:bar_id>', web.views.combination, name='Combination'),
+    path('alcohol/<int:pk>', web.views.AlcoholView.as_view(), name="Alcohol"),
+    path('mix/<int:pk>', web.views.MixView.as_view(), name="Mix"),
     path("admin/", admin.site.urls),
 ]
