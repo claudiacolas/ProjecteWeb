@@ -34,7 +34,7 @@ nav a:hover {
     <ul>
       {% for Combination in Combinations %}
       <!-- AIXÓ NO FUNCIONA -->
-        <li><a href={% url 'Combination' Combination.id} >{{ Combination.name }}</li></a>
+        <li><a href={% url 'combination' combination.name  } >{{ combination.name }}</a></li>
     {% endfor %}
     </ul>
   </nav>

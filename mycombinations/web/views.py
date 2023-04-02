@@ -8,11 +8,11 @@ from web.models import Brand, Alcohol, Mix, Combination
 # Create your views here.
 
 def principal(request):
-    Combinations = Combination.objects.all()
+    combinations = Combination.objects.all()
     return render(request, 'web/index.html', {"Combination": Combination})
     
 def combination(request, combination_id):
-    Combination = Combination.objects.get(pk=combination_id)
+    combination = Combination.objects.get(pk=combination_id)
     return render(request, 'web/combination.html', {"combination": combination})
 class AlcoholView(generic.DetailView):
     model = Alcohol
