@@ -1,0 +1,14 @@
+{{brand}}
+<ul>
+    {% for alcohol in brand.alcohol_set.all %}
+        <li>{{ alcohol.name }}</li>
+    {% endfor %}
+   
+</ul>
+
+<ul>
+    {% for mix in brand.mix_set.all %}
+        <li>{{ mix.name }}</li>
+    {% endfor %}
+   
+</ul>
