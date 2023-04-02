@@ -9,7 +9,7 @@ from web.models import Brand, Alcohol, Mix, Combination
 
 def principal(request):
     combinations = Combination.objects.all()
-    return render(request, 'web/index.html', {"Combination": Combination})
+    return render(request, 'web/index.html', {"combinations": combinations})
     
 def combination(request, combination_id):
     combination = Combination.objects.get(pk=combination_id)
