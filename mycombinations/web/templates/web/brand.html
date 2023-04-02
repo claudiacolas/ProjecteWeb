@@ -1,14 +1,14 @@
-{{brand}}
-<ul>
-    {% for alcohol in brand.alcohol_set.all %}
-        <li>{{ alcohol.name }}</li>
-    {% endfor %}
-   
-</ul>
+{{ brand.name }}
 
 <ul>
+    {% for alcohol in brand.alcohol_set.all %}
+    <li><a href={% url 'Alcohol' alcohol.id %}>{{ alcohol.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<ul>    
     {% for mix in brand.mix_set.all %}
-        <li>{{ mix.name }}</li>
+    <li><a href={% url 'Mix' mix.id %}>{{ mix.name }}</a></li>
     {% endfor %}
    
 </ul>

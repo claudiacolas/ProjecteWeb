@@ -32,10 +32,9 @@ nav a:hover {
   <nav>
     <h3 class="tittle">What will I drink today ?</h3>
     <ul>
-      {% for Combination in Combinations %}
-      <!-- AIXÓ NO FUNCIONA -->
-        <li><a href={% url 'combination' combination.name  } >{{ combination.name }}</a></li>
-    {% endfor %}
+      {% for combination in combinations %}
+      <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
+      {% endfor %}
     </ul>
   </nav>
 </header>

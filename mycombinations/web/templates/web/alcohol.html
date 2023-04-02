@@ -1,8 +1,8 @@
 {{alcohol.name}}
 
 <ul>
-    {% for brand in alcohol.brand_set.all %}
-        <li>{{ brand.name }}</li>
+    {% for combination in alcohol.combination_set.all %}
+    <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>    
     {% endfor %}
    
 </ul>

@@ -1,8 +1,8 @@
 {{mix.name}}
 
 <ul>
-    {% for brand in mix.brand_set.all %}
-        <li>{{ brand.name }}</li>
+    {% for combination in mix.combination_set.all %}
+    <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
     {% endfor %}
-   
+
 </ul>
