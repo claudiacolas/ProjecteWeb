@@ -1,4 +1,3 @@
-{{ brand.name }}
 <style>header {
     background-color: #FF33C7;
     color: #fff;
@@ -41,15 +40,14 @@
     </nav>
   </header>
 
+  <h2>{{mix.name}}</h2>
 
-<h2>{{alcohol.name}}</h2>
+  <p>Which combinations can be made with it?</p>
 
-<p>Which types are there?</p>
-
-<ul>
-    {% for Alcohol in alcohols %}
-    <li><a href={% url 'Alcohol' Alcohol.id %}>{{ Alcohol.name }}</a></li>    
+  <ul>
+    {% for combination in mix.combination_set.all %}
+    <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
     {% endfor %}
 
-   
-</ul>
+  </ul>
+  

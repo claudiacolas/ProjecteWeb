@@ -29,10 +29,12 @@ def Brands(request):
 
 class AlcoholView(generic.DetailView):
     model = Alcohol
-    template_name = 'web/alcohol.html'
+    template_name = 'web/specificalcohol.html'
+
 class MixView(generic.DetailView):
     model = Mix
-    template_name = 'web/mix.html'
+    template_name = 'web/specificmix.html'
+
 class BrandView(generic.DetailView):
     model = Brand
-    template_name = 'web/brand.html'
+    template_name = 'web/specificbrand.html'

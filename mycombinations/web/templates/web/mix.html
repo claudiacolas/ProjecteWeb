@@ -41,9 +41,12 @@
     </nav>
   </header>
 
+{{ mix.name }}
+
+<p>Which types are there?</p>
+
 <ul>
     {% for Mix in mixs %}
     <li><a href={% url 'Mix' Mix.id %}>{{ Mix.name }}</a></li>
     {% endfor %}
 </ul>
-{{ mix.name }}

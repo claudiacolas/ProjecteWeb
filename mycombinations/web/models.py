@@ -5,6 +5,13 @@ from django.db import models
 class Brand(models.Model):
     name = models.CharField(max_length=200)
     
+    class Type(models.IntegerChoices):
+        NONE = 0
+        ALCOHOL = 1
+        MIX = 2
+    
+    type = models.IntegerField(choices=Type.choices, default=0)
+    
     def __str__(self) -> str:
         return self.name
 
