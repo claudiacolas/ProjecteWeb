@@ -44,27 +44,25 @@
 
   {% if brand.type == 1 %}
 
-      <p>Which alcohols are there?</p>
-
+      <p>This is type of alcohol: </p>
       <ul>
         {% for alcohol in brand.alcohol_set.all %}
-        <li><a href={% url 'Alcohol' alcohol.id %}>{{ alcohol.name }}</a></li>
+        <li><a href={% url 'Alcohol' alcohol.id %}>{{ alcohol.name }}</a></li>    
         {% endfor %}
-
+    
       </ul>
+
   {% endif %}
 
   {% if brand.type == 2 %}
 
-    <p>Which mixes are there?</p>
-
-    <ul>
-
-      {% for mix in brand.mix_set.all %}
-      <li><a href={% url 'Mix' mix.id %}>{{ mix.name }}</a></li>
-      {% endfor %}
+      <p>This is type of mix:</p>
+      <ul>
+        {% for mix in brand.mix_set.all %}
+        <li><a href={% url 'Mix' mix.id %}>{{ mix.name }}</a></li>    
+        {% endfor %}
     
-    </ul>
+      </ul>
 
   {% endif %}
 
