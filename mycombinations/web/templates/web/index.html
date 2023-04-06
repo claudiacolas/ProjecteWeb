@@ -28,6 +28,7 @@
   nav a:hover {
     background-color: #F6BCF2;
   }
+ 
   </style>
   <header>
     <nav>
@@ -41,7 +42,7 @@
     </nav>
   </header>
 
-<body><ul>
+<body ><ul>
   {% for combination in combinations %}
   <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
   {% endfor %}
