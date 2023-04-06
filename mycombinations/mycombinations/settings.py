@@ -21,7 +21,7 @@ print("base dir path", BASE_DIR)
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ur#ge^_p1*bb%4=fe#2)9w!h^5_cb#n*ti)g%s7#)*5486ht*f"
+SECRET_KEY = "srdelanit"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
