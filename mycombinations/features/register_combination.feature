@@ -6,7 +6,7 @@ Feature: Register Combination
  Background: There is a registered user
     Given Exists a user "user" with password "password"
 
-  Scenario: Register just cobination name
+  Scenario: Register just combination name
     Given I login as user "user" with password "password"
     When I register combination
       | name        |
