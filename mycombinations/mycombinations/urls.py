@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.views.static import serve
 
 import web.views
 
@@ -29,4 +31,5 @@ urlpatterns = [
     path('mix.html',web.views.Mixs , name = 'Mixs'),
     path('mix/<int:pk>', web.views.MixView.as_view(), name='Mix'),
     path("admin/", admin.site.urls),
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, })
 ]

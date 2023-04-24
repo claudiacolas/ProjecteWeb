@@ -36,3 +36,4 @@ class Combination(models.Model):
     
     def __str__(self) -> str:
         return self.name+" = " +self.alcohol.name+" with "+self.mix.name
+image = models.ImageField(upload_to="mycombinations", blank=True, null=True)
