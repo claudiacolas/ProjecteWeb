@@ -6,8 +6,8 @@ Feature: Register Brand
  Background: There is a registered user and mix or alcohol
     Given Exists a user "user" with password "password"
     And Exists mix registered by "user"
-      | name            |
-      | FantaLlimona    |
+      | name         |
+      | Lemon        |
 
   Scenario: Register just brand name
     Given I login as user "user" with password "password"
@@ -26,7 +26,7 @@ Feature: Register Brand
       | Larios          | features/random.png      |
     Then I'm viewing the details page for dish at restaurant "The Tavern" by "user"
       | name            | image                    |
-      | Larios          | myrestaurants/random.png |
+      | Larios          | mycombinations/random.png |
     And There are 1 dishes
 
   Scenario: Try to register brand but not logged in

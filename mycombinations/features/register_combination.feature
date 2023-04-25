@@ -10,16 +10,16 @@ Feature: Register Combination
     Given I login as user "user" with password "password"
     When I register combination
       | name    |
-      | RonCola |
+      | RumCola |
     Then I'm viewing the details page for combination by "user"
       | name     |
-      | RonCola  |
+      | RumCola  |
     And There are 1 combination
 
   Scenario: Try to register combination but not logged in
     Given I'm not logged in
     When I register combination
       | name     |
-      | RonCola  |
+      | RumCola  |
     Then I'm redirected to the login form
-    And There are 0 restaurants
+    And There are 0 combination

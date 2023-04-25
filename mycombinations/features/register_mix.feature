@@ -22,5 +22,5 @@ Feature: Register Mix
       | name          |
       | FantaLlimona  |
     Then I'm redirected to the login form
-    And There are 0 mi
+    And There are 0 mix
   
