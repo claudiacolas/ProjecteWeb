@@ -36,4 +36,3 @@ class Combination(models.Model):
     
     def __str__(self) -> str:
         return self.name+" with " +self.alcohol.brand.name+" and "+self.mix.brand.name
-
