@@ -1,18 +1,41 @@
 Feature: Register Brand
-    In order to keep track of the brands I try
+    In order to keep track of the brands I know
     As a user
     I want to register a brand
 
- Background: There is a registered user
+ Background: There is a registered user and mix or alcohol
     Given Exists a user "user" with password "password"
+    And Exists mix registered by "user"
+      | name            |
+      | FantaLlimona    |
+    Or Exists alcohol registered by "user"
+      | name            |
+      | Ginebra         |
 
   Scenario: Register just brand name
     Given I login as user "user" with password "password"
     When I register brand
       | name        |
-      | Gin |
+      | Larios      |
     Then I'm viewing the details page for brand by "user"
       | name        |
-      | Gin  |
+      | Larios      |
     And There are 1 brand
     
+  Scenario: Register brand with picture
+    Given I login as user "user" with password "password"
+    When I register brand at alcohol "Ginebra"
+      | name            | image                    |
+      | Larios          | features/random.png      |
+    Then I'm viewing the details page for dish at restaurant "The Tavern" by "user"
+      | name            | image                    |
+      | Larios          | myrestaurants/random.png |
+    And There are 1 dishes
+
+  Scenario: Try to register brand but not logged in
+    Given I'm not logged in
+    When I register brand at alcohol "Ginebra"
+      | name         |
+      | Larios       |
+    Then I'm redirected to the login form
+    And There are 0 dishes

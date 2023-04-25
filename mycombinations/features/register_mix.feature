@@ -16,3 +16,10 @@ Feature: Register Mix
       | Coca-Cola  |
     And There are 1 mix
     
+  Scenario: Try to register mix but not logged in
+    Given I'm not logged in
+    When I register mix
+      | name          |
+      | FantaLlimona  |
+    Then I'm redirected to the login form
+    And There are 0 mix

@@ -16,3 +16,10 @@ Feature: Register Alcohol
       | Gin  |
     And There are 1 alcohol
     
+  Scenario: Try to register alcohol but not logged in
+    Given I'm not logged in
+    When I register alcohol
+      | name     |
+      | Gin      |
+    Then I'm redirected to the login form
+    And There are 0 alcohol
