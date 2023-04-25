@@ -27,7 +27,7 @@ class Mix(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
-        return self.name
+        return self.name+" of the brand "+self.brand.name
 
 class Combination(models.Model):
     name = models.CharField(max_length=200)
