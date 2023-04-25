@@ -10,10 +10,10 @@ Feature: Register Alcohol
     Given I login as user "user" with password "password"
     When I register alcohol
       | name        |
-      | Gin |
+      | Gin         |
     Then I'm viewing the details page for alcohol by "user"
       | name        |
-      | Gin  |
+      | Gin         |
     And There are 1 alcohol
     
   Scenario: Try to register alcohol but not logged in

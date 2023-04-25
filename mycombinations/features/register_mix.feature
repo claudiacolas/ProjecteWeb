@@ -10,10 +10,10 @@ Feature: Register Mix
     Given I login as user "user" with password "password"
     When I register mix
       | name        |
-      | Coca-Cola |
+      | Coca-Cola   |
     Then I'm viewing the details page for mix by "user"
       | name        |
-      | Coca-Cola  |
+      | Coca-Cola   |
     And There are 1 mix
     
   Scenario: Try to register mix but not logged in
@@ -22,4 +22,5 @@ Feature: Register Mix
       | name          |
       | FantaLlimona  |
     Then I'm redirected to the login form
-    And There are 0 mix
+    And There are 0 mi
+  

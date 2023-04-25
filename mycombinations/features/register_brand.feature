@@ -8,9 +8,6 @@ Feature: Register Brand
     And Exists mix registered by "user"
       | name            |
       | FantaLlimona    |
-    Or Exists alcohol registered by "user"
-      | name            |
-      | Ginebra         |
 
   Scenario: Register just brand name
     Given I login as user "user" with password "password"
