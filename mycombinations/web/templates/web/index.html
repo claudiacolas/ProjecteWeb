@@ -44,7 +44,10 @@
 
 <body ><ul>
   {% for combination in combinations %}
-  <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
+   <li><a href={% url 'Combination' combination.id %}>{{ combination.name }}</a></li>
+   {% if combination.image %}
+    	<p><img src="{{mycombinations.image.url }}"/></p>
+   {% endif %}
   {% endfor %}
 </ul></body>
 
