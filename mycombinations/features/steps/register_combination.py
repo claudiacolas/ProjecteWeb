@@ -10,7 +10,7 @@ use_step_matcher("parse")
 def step_impl(context, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
-    from mycombinations.models import Combination
+    from mycombinations.web.models import Combination
     for row in context.table:
         combination = Combination(user=user)
         for heading in row.headings:
@@ -20,8 +20,8 @@ def step_impl(context, username):
 @when('I register combination')
 def step_impl(context):
     for row in context.table:
-        context.browser.visit(context.get_url('mycombinations:combination_create'))
-        if context.browser.url == context.get_url('mycombinations:combination_create'):
+        context.browser.visit(context.get_url('combinations:combination_create'))
+        if context.browser.url == context.get_url('combinations:combination_create'):
             form = context.browser.find_by_tag('form').first
             for heading in row.headings:
                 context.browser.fill(heading, row[heading])

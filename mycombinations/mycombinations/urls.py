@@ -15,24 +15,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django.utils import timezone
 from django.contrib.auth import views
-from django.views.generic import RedirectView
-from django.views.static import serve
-from django.conf import settings
+from django.views.generic import DetailView, ListView
 
-import web.views
+#from web.models import *
+from mycombinations.forms import BrandForm, MixForm, AlcoholForm, CombinationForm
+from web.views import Principal, combination, Alcohols, Mixs, Brands, AlcoholView, MixView, BrandView, \
+    CombinationDetail, CombinationCreate, AlcoholCreate, MixCreate, BrandCreate
+from web.models import Brand, Mix, Alcohol, Combination
+
+app_name = 'mycombinations'
 
 urlpatterns = [
-    path('', web.views.principal, name='Principal'),
-    path('combination/<int:combination_id>', web.views.combination, name='Combination'),
-    path('alcohol.html',web.views.Alcohols , name = 'Alcohols'),
-    path('specificalcohol/<int:pk>', web.views.AlcoholView.as_view(), name='Alcohol'),
-    path('brand.html', web.views.Brands , name='Brands'),
-    path('brand/<int:pk>', web.views.BrandView.as_view(), name='Brand'),
-    path('mix.html',web.views.Mixs , name = 'Mixs'),
-    path('mix/<int:pk>', web.views.MixView.as_view(), name='Mix'),
+    path('', Principal, name='Principal'),
     path("admin/", admin.site.urls),
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(), name='logout'),
+
+    path('',
+        ListView.as_view(
+            queryset=Combination.objects.filter(date__lte=timezone.now()).order_by('-date')[:5],
+            context_object_name='latest_combination_list',
+            template_name='mycombinations/combination_list.html'),
+        name='combination_list'),
+
+    path('combinations/<int:pk>',
+         CombinationDetail.as_view(),
+         name='combination_detail'),
+
+
 ]
