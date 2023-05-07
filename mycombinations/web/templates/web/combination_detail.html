@@ -1,0 +1,18 @@
+{% extends "web/index.html" %}
+
+{% block content %}
+
+
+
+
+{% if Combination.image %}
+	<p><img src="{{ Combination.image.url }}"/></p>
+{% endif %}
+
+
+
+{% endblock %}
+
+{% block footer %}
+	Created by {{ Combination.user }} on {{ Combination.date }}
+{% endblock %}

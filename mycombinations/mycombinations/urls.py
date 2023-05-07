@@ -19,6 +19,8 @@ from django.urls import path
 from django.utils import timezone
 from django.contrib.auth import views
 from django.views.generic import DetailView, ListView
+from django.conf import settings
+from django.views.static import serve
 
 #from web.models import *
 from mycombinations.forms import BrandForm, MixForm, AlcoholForm, CombinationForm
@@ -44,6 +46,6 @@ urlpatterns = [
     path('combinations/<int:pk>',
          CombinationDetail.as_view(),
          name='combination_detail'),
-
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, })
 
 ]
