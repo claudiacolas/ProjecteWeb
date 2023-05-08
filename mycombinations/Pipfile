@@ -10,6 +10,7 @@ splinter = "*"
 django = "*"
 behave-django = "*"
 pillow = "*"
+whitenoise = "*"
 
 [dev-packages]
 

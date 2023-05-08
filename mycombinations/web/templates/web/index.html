@@ -1,13 +1,59 @@
 {% load static %}
 <!DOCTYPE html>
+<style>header {
+    background-color: #FF33C7;
+    color: #fff;
+    padding: 10px;
+  }
+
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  nav a:hover {
+    background-color: #F6BCF2;
+  }
+</style>
 <html lang="en">
-<head>
+<header>
+    <nav>
+    <h3 class="tittle">What will I drink today ?</h3>
+    <ul>
+      <li><a href="http://127.0.0.1:8000/">My combinations</a></li>
+      <li><a href="http://127.0.0.1:8000/alcohol.html">Alcohols</a></li>
+      <li><a href="http://127.0.0.1:8000/mix.html">Mixs</a></li>
+      <li><a href="http://127.0.0.1:8000/brand.html">Brands</a></li>
+        <li>
+        {% if user.is_authenticated %}
+            <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}?next={{request.path}}">login</a></p>
+        {% endif %}
+     </li>
+    </ul>
+  </nav>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="{% static "style/base.css" %}" />
     <title>{% block title %}Mycombinations by Mycombinations{% endblock %}</title>
-</head>
+</header>
 
 <body>
 
