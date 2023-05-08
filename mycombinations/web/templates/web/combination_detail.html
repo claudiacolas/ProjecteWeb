@@ -42,7 +42,7 @@
 </span>
 
 <h3>Add Review</h3>
-<form action="{% url 'mycombinations:review_create' combination.id %}" method="post">
+<form action="{% url 'web:review_create' combination.id %}" method="post">
     {% csrf_token %}
     Message: <textarea name="comment" id="comment" rows="4"></textarea>
     <p>Rating:</p>
