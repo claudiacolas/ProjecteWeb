@@ -9,6 +9,7 @@ django-behave = "*"
 splinter = "*"
 django = "*"
 behave-django = "*"
+pillow = "*"
 
 [dev-packages]
 
