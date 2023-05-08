@@ -24,9 +24,8 @@ from django.views.static import serve
 
 #from web.models import *
 from mycombinations.forms import BrandForm, MixForm, AlcoholForm, CombinationForm
-from mycombinations.web.views import LoginRequiredCheckIsOwnerUpdateView
 from web.views import Principal, combination, Alcohols, Mixs, Brands, AlcoholView, MixView, BrandView, \
-    CombinationDetail, CombinationCreate, AlcoholCreate, MixCreate, BrandCreate
+    CombinationDetail, CombinationCreate, AlcoholCreate, MixCreate, BrandCreate, LoginRequiredCheckIsOwnerUpdateView
 from web.models import Brand, Mix, Alcohol, Combination
 
 app_name = 'mycombinations'
