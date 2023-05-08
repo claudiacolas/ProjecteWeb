@@ -19,4 +19,4 @@ class MixForm(ModelForm):
 class CombinationForm(ModelForm):
     class Meta:
         model = Combination
-        fields = ['name', 'alcohol', 'mix']
+        fields = ['name', 'alcohol', 'mix','image']

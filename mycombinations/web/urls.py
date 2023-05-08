@@ -21,7 +21,9 @@ urlpatterns = [
 
     # Combination details, ex.: /mycombinations/combinations/1/
     path('combinations/<int:pk>',
-         CombinationDetail.as_view(),
+         CombinationDetail.as_view(
+            template_name='web/combination_detail.html'
+         ),
          name='combination_detail'),
 
     # Create a combination, /mycombinations/combinations/create/
@@ -66,5 +68,10 @@ urlpatterns = [
          AlcoholCreate.as_view(),
          name='alcohol_create'),
 
-    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, })
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, }),
+
+    # Create a restaurant review, ex.: /mycombinations/combinations/1/reviews/create/
+    path('combinations/<int:pk>/reviews/create',
+        review,
+        name='review_create'),
 ]

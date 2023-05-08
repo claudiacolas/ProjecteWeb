@@ -13,25 +13,8 @@ from .models import *
 
 # Create your views here.
 
-def Principal(request):
-    combinations = Combination.objects.all()
-    return render(request, 'web/index.html', {"combinations": combinations})
-    
-def combination(request, combination_id):
-    combination = Combination.objects.get(pk=combination_id)
-    return render(request, 'web/combination.html', {"combination": combination})
 
-def Alcohols(request):
-    alcohols = Alcohol.objects.all()
-    return render(request, 'web/alcohol.html', {"alcohols": alcohols})
 
-def Mixs(request):
-    mixs= Mix.objects.all()
-    return render(request, 'web/mix.html', {'mixs': mixs})
-
-def Brands(request):
-    brands= Brand.objects.all()
-    return render(request, 'web/brand.html', {'brands': brands})
 
 class AlcoholView(generic.DetailView):
     model = Alcohol
@@ -47,7 +30,7 @@ class BrandView(generic.DetailView):
 
 class CombinationDetail(DetailView):
     model = Combination
-    template_name = 'mycombinations/combination_detail.html'
+    template_name = 'web/combination_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super(CombinationDetail, self).get_context_data(**kwargs)
@@ -56,7 +39,7 @@ class CombinationDetail(DetailView):
     
 class CombinationCreate(LoginRequiredMixin, CreateView):
     model = Combination
-    template_name = 'mycombinations/form.html'
+    template_name = 'web/form.html'
     form_class = CombinationForm
 
     def form_valid(self, form):
@@ -65,7 +48,7 @@ class CombinationCreate(LoginRequiredMixin, CreateView):
     
 class AlcoholCreate(LoginRequiredMixin, CreateView):
     model = Alcohol
-    template_name = 'mycombinations/form.html'
+    template_name = 'web/form.html'
     form_class = AlcoholForm
 
     def form_valid(self, form):
@@ -75,7 +58,7 @@ class AlcoholCreate(LoginRequiredMixin, CreateView):
     
 class MixCreate(LoginRequiredMixin, CreateView):
     model = Mix
-    template_name = 'mycombinations/form.html'
+    template_name = 'web/form.html'
     form_class = MixForm
 
     def form_valid(self, form):
@@ -85,7 +68,7 @@ class MixCreate(LoginRequiredMixin, CreateView):
     
 class BrandCreate(LoginRequiredMixin, CreateView):
     model = Brand
-    template_name = 'mycombinations/form.html'
+    template_name = 'web/form.html'
     form_class = BrandForm
 
     def form_valid(self, form):
@@ -108,7 +91,7 @@ class CheckIsOwnerMixin(object):
         return obj
     
 class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
-    template_name = 'mycombinations/form.html'
+    template_name = 'web/form.html'
 
 @login_required()
 def review(request, pk):

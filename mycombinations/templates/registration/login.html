@@ -33,15 +33,12 @@
 <header><nav>
     <h3 class="tittle">What will I drink today ?</h3>
     <ul>
-      <li><a href="http://127.0.0.1:8000/">My combinations</a></li>
-      <li><a href="http://127.0.0.1:8000/alcohol.html">Alcohols</a></li>
-      <li><a href="http://127.0.0.1:8000/mix.html">Mixs</a></li>
-      <li><a href="http://127.0.0.1:8000/brand.html">Brands</a></li>
+      <li><a href="http://127.0.0.1:8000/">HOME</a></li>
         <li>
         {% if user.is_authenticated %}
             <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
         {% else %}
-            <p><a href="{% url 'login' %}?next={{request.path}}">login</a></p>
+            <p><a href="{% url 'login' %}?next={{request.path}}">Login</a></p>
         {% endif %}
      </li>
     </ul>

@@ -1,4 +1,4 @@
-{% extends "mycombinations/index.html" %}
+{% extends "web/index.html" %}
 {% block title %}MyCombinations - {{ combination.name }}{% endblock %}
 {% block content %}
 
@@ -10,6 +10,10 @@
         (<a href="{% url 'web:combination_edit' combination.id %}">edit</a>)
     {% endif %}
 </h1>
+
+    {% if combination.image %}
+    <p><img src="{{ combination.image.url }}"/></p>
+    {% endif %}
 
 <h2>Reviews</h2>
 {% if combination.combinationreview_set.all|length > 0 %}
