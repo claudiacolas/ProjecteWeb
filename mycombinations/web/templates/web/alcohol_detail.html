@@ -5,24 +5,24 @@
 <h1>
     {{ alcohol.name }}
     {% if user == alcohol.user %}
-        (<a href="{% url 'mycombinations:alcohol_edit' alcohol.id %}">edit</a>)
+        (<a href="{% url 'web:alcohol_edit' alcohol.id %}">edit</a>)
     {% endif %}
 </h1>
 <p>{{ alcohol.description }}</p>
 {% if alcohol.image %}
     <p><img src="{{ alcohol.image.url }}"/></p>
 {% endif %}
-<p>Served by <a href="{% url 'mycombinations:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></p>
+<p>Served by <a href="{% url 'web:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></p>
 
 <h2>
     Combinations
     {% if user.is_authenticated %}
-        (<a href="{% url 'myrestaurants:combination_create' alcohol.id %}">add</a>)
+        (<a href="{% url 'web:combination_create' alcohol.id %}">add</a>)
     {% endif %}
 </h2>
 <ul>
     {% for combination in alcohols.combinations.all %}
-        <li><a href="{% url 'myrestaurants:combination_detail' alcohol.id combination.id %}">
+        <li><a href="{% url 'web:combination_detail' alcohol.id combination.id %}">
             {{ combination.name }}</a></li>
     {% empty %}<li>Sorry, no combinations for this alcohol yet.</li>
     {% endfor %}

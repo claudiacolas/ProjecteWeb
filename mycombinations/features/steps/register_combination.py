@@ -20,8 +20,8 @@ def step_impl(context, username):
 @when('I register combination')
 def step_impl(context):
     for row in context.table:
-        context.browser.visit(context.get_url('combinations:combination_create'))
-        if context.browser.url == context.get_url('combinations:combination_create'):
+        context.browser.visit(context.get_url('web:combination_create'))
+        if context.browser.url == context.get_url('web:combination_create'):
             form = context.browser.find_by_tag('form').first
             for heading in row.headings:
                 context.browser.fill(heading, row[heading])
@@ -29,7 +29,7 @@ def step_impl(context):
 
 @then('There are {count:n} combinations')
 def step_impl(context, count):
-    from mycombinations.models import Combination
+    from mycombinations.web.models import Combination
     assert count == Combination.objects.count()
 
 @then('I\'m viewing the details page for combination by "{username}"')
@@ -37,16 +37,16 @@ def step_impl(context, username):
     q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
     from django.contrib.auth.models import User
     q_list.append(Q(('user', User.objects.get(username=username))))
-    from mycombinations.models import Combination
+    from mycombinations.web.models import Combination
     combination = Combination.objects.filter(reduce(operator.and_, q_list)).get()
     assert context.browser.url == context.get_url(combination)
 
 @when('I edit the combination with name "{name}"')
 def step_impl(context, name):
-    from mycombinations.models import Combination
+    from mycombinations.web.models import Combination
     combination = Combination.objects.get(name=name)
-    context.browser.visit(context.get_url('mycombinations:combination_edit', combination.pk))
-    if context.browser.url == context.get_url('mycombinations:combination_edit', combination.pk)\
+    context.browser.visit(context.get_url('web:combination_edit', combination.pk))
+    if context.browser.url == context.get_url('web:combination_edit', combination.pk)\
             and context.browser.find_by_tag('form'):
         form = context.browser.find_by_tag('form').first
         for heading in context.table.headings:
