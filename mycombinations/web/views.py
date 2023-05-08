@@ -55,6 +55,7 @@ class CombinationDetail(DetailView):
         context = super(CombinationDetail, self).get_context_data(**kwargs)
         context['RATING_CHOICES'] = CombinationReview.RATING_CHOICES
         return context
+    
 class CombinationCreate(LoginRequiredMixin, CreateView):
     model = Combination
     template_name = 'mycombinations/form.html'
@@ -63,6 +64,7 @@ class CombinationCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CombinationCreate, self).form_valid(form)
+    
 class AlcoholCreate(LoginRequiredMixin, CreateView):
     model = Alcohol
     template_name = 'mycombinations/form.html'
@@ -72,6 +74,7 @@ class AlcoholCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         form.instance.combination = Combination.objects.get(id=self.kwargs['pk'])
         return super(AlcoholCreate, self).form_valid(form)
+    
 class MixCreate(LoginRequiredMixin, CreateView):
     model = Mix
     template_name = 'mycombinations/form.html'
@@ -81,6 +84,7 @@ class MixCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         form.instance.combination = Combination.objects.get(id=self.kwargs['pk'])
         return super(MixCreate, self).form_valid(form)
+    
 class BrandCreate(LoginRequiredMixin, CreateView):
     model = Brand
     template_name = 'mycombinations/form.html'
@@ -104,6 +108,7 @@ class CheckIsOwnerMixin(object):
         if not obj.user == self.request.user:
             raise PermissionDenied
         return obj
+    
 class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
     template_name = 'mycombinations/form.html'
 
