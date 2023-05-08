@@ -7,7 +7,7 @@
 <h1>
     <span property="name">{{ combination.name }}</span>
     {% if user == combination.user %}
-        (<a href="{% url 'mycombinations:combination_edit' combination.id %}">edit</a>)
+        (<a href="{% url 'web:combination_edit' combination.id %}">edit</a>)
     {% endif %}
 </h1>
 

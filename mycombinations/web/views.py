@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
@@ -9,9 +8,8 @@ from django.views import generic
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
-from mycombinations.forms import *
+from web.forms import *
 from web.models import *
-
 
 # Create your views here.
 
@@ -114,7 +112,7 @@ class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin,
 
 @login_required()
 def review(request, pk):
-    restaurant = get_object_or_404(Combination, pk=pk)
+    combination = get_object_or_404(Combination, pk=pk)
     if CombinationReview.objects.filter(combination=combination, user=request.user).exists():
         CombinationReview.objects.get(combination=combination, user=request.user).delete()
     new_review = CombinationReview(
@@ -123,4 +121,4 @@ def review(request, pk):
         user=request.user,
         combination=combination)
     new_review.save()
-    return HttpResponseRedirect(reverse('mycombinations:combination_detail', args=(restaurant.id,)))
+    return HttpResponseRedirect(reverse('mycombinations:combination_detail', args=(combination.id,)))
