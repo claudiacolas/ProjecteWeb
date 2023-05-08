@@ -31,12 +31,12 @@
 <h2>
     Mixs
     {% if user.is_authenticated %}
-        (<a href="{% url 'myrestaurants:mix_create' brand.id %}">add</a>)
+        (<a href="{% url 'web:mix_create' brand.id %}">add</a>)
     {% endif %}
 </h2>
 <ul>
     {% for mix in brands.mixs.all %}
-        <li><a href="{% url 'myrestaurants:mix_detail' brand.id mix.id %}">
+        <li><a href="{% url 'web:mix_detail' brand.id mix.id %}">
             {{ mix.name }}</a></li>
     {% empty %}<li>Sorry, no mixs for this brand yet.</li>
     {% endfor %}

@@ -8,8 +8,8 @@ from django.views import generic
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
-from web.forms import *
-from web.models import *
+from .forms import *
+from .models import *
 
 # Create your views here.
 

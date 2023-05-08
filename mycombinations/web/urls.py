@@ -4,10 +4,9 @@ from django.views.generic import ListView
 from django.conf import settings
 from django.views.static import serve
 
-
-from web.forms import CombinationForm
-from web.views import CombinationDetail, CombinationCreate, LoginRequiredCheckIsOwnerUpdateView
-from web.models import Combination
+from .forms import *
+from .views import *
+from .models import *
 
 app_name = 'web'
 
@@ -36,6 +35,36 @@ urlpatterns = [
              model=Combination,
              form_class=CombinationForm),
          name='combination_edit'),
+
+    # Brands details, ex.: /mycombinations/brands/1/
+    path('brands/<int:pk>',
+         BrandView.as_view(),
+         name='brand_detail'),
+
+    # Create a brand, /mycombinations/brands/create/
+    path('brands/create',
+         CombinationCreate.as_view(),
+         name='brand_create'),
+
+    # Mixs details, ex.: /mycombinations/mixs/1/
+    path('mixs/<int:pk>',
+         MixView.as_view(),
+         name='mix_detail'),
+
+    # Create a brand, /mycombinations/mixs/create/
+    path('mixs/create',
+         MixCreate.as_view(),
+         name='mix_create'),
+
+    # Brands details, ex.: /mycombinations/alcohols/1/
+    path('alcohols/<int:pk>',
+         AlcoholView.as_view(),
+         name='alcohol_detail'),
+
+    # Create a brand, /mycombinations/alcohols/create/
+    path('alcohols/create',
+         AlcoholCreate.as_view(),
+         name='alcohol_create'),
 
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, })
 ]

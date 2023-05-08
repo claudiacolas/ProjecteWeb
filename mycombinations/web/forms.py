@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from web.models import Brand, Alcohol, Mix, Combination
+from .models import Brand, Alcohol, Mix, Combination
 
 class BrandForm(ModelForm):
     class Meta:
