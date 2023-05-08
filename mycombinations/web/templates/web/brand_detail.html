@@ -1,0 +1,49 @@
+{% extends "mycombinations/index.html" %}
+
+{% block content %}
+
+<h1>
+    {{ brand.name }}
+    {% if user == brand.user %}
+        (<a href="{% url 'mycombinations:brand_edit' brand.id %}">edit</a>)
+    {% endif %}
+</h1>
+<p>{{ brand.description }}</p>
+{% if brand.image %}
+    <p><img src="{{ brand.image.url }}"/></p>
+{% endif %}
+<p>Served by <a href="{% url 'mycombinations:brand_detail' brand.id %}">{{ brand.name }}</a></p>
+
+<h2>
+    Alcohols
+    {% if user.is_authenticated %}
+        (<a href="{% url 'myrestaurants:alcohol_create' brand.id %}">add</a>)
+    {% endif %}
+</h2>
+<ul>
+    {% for alcohol in brands.alcohols.all %}
+        <li><a href="{% url 'myrestaurants:alcohol_detail' brand.id alcohol.id %}">
+            {{ alcohol.name }}</a></li>
+    {% empty %}<li>Sorry, no alcohols for this brand yet.</li>
+    {% endfor %}
+</ul>
+
+<h2>
+    Mixs
+    {% if user.is_authenticated %}
+        (<a href="{% url 'myrestaurants:mix_create' brand.id %}">add</a>)
+    {% endif %}
+</h2>
+<ul>
+    {% for mix in brands.mixs.all %}
+        <li><a href="{% url 'myrestaurants:mix_detail' brand.id mix.id %}">
+            {{ mix.name }}</a></li>
+    {% empty %}<li>Sorry, no mixs for this brand yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block footer %}
+    Created by {{ brand.user }} on {{ brand.date }}
+{% endblock %}

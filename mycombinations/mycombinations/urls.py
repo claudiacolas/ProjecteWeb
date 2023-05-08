@@ -24,15 +24,10 @@ from django.conf import settings
 import web.views
 
 urlpatterns = [
-    path('', web.views.principal, name='Principal'),
-    path('combination/<int:combination_id>', web.views.combination, name='Combination'),
-    path('alcohol.html',web.views.Alcohols , name = 'Alcohols'),
-    path('specificalcohol/<int:pk>', web.views.AlcoholView.as_view(), name='Alcohol'),
-    path('brand.html', web.views.Brands , name='Brands'),
-    path('brand/<int:pk>', web.views.BrandView.as_view(), name='Brand'),
-    path('mix.html',web.views.Mixs , name = 'Mixs'),
-    path('mix/<int:pk>', web.views.MixView.as_view(), name='Mix'),
+    path('mycombinations/', web.views.principal, name='Principal'),
     path("admin/", admin.site.urls),
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(), name='logout'),
+
+
 ]

@@ -1,0 +1,60 @@
+{% extends "mycombinations/index.html" %}
+{% block title %}MyCombinations - {{ combination.name }}{% endblock %}
+{% block content %}
+
+<span vocab="http://schema.org/" typeof="Combination">
+
+<h1>
+    <span property="name">{{ combination.name }}</span>
+    {% if user == combination.user %}
+        (<a href="{% url 'mycombinations:combination_edit' combination.id %}">edit</a>)
+    {% endif %}
+</h1>
+
+<h2>Reviews</h2>
+{% if combination.combinationreview_set.all|length > 0 %}
+<span rel="aggregateRating">
+    <p typeof="AggregateRating">
+        Average rating <span property="ratingValue">{{ combinations.averageRating|stringformat:".1f" }}</span>
+        {% with combination.combinationreview_set.all|length as reviewCount %}
+        from <span property="reviewCount">{{ reviewCount }}</span> review{{ reviewCount|pluralize }}
+        {% endwith %}
+    </p>
+</span>
+<ul rel="review">
+    {% for review in combination.combinationreview_set.all %}
+        <li typeof="Review">
+            <p rel="reviewRating" typeof="Rating">
+                <span property="worstRating" content="{{ RATING_CHOICES.0.0 }}"></span>
+                <span property="ratingValue">{{ review.rating }}</span> star{{ review.rating|pluralize }}
+                {% with RATING_CHOICES|last as best %}
+                <span property="bestRating" content="{{ best.0 }}"></span>
+                {% endwith %}
+            </p>
+            <p property="description">{% if review.comment %}{{ review.comment }}{% endif %}</p>
+            <p>Created by <span property="author">{{ review.user }}</span> on
+                <span property="datePublished" content="{{ review.date|date:'Y-m-d' }}">{{ review.date }}</span></p>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</span>
+
+<h3>Add Review</h3>
+<form action="{% url 'mycombinations:review_create' combination.id %}" method="post">
+    {% csrf_token %}
+    Message: <textarea name="comment" id="comment" rows="4"></textarea>
+    <p>Rating:</p>
+    <p>{% for rate in RATING_CHOICES %}
+    <input type="radio" name="rating" id="rating{{ forloop.counter }}" value="{{ rate.0 }}" />
+    <label for="choice{{ forloop.counter }}">{{ rate.1 }} star{{ rate.0|pluralize }}</label>
+    <br/>{% endfor %}
+    </p>
+    <input type="submit" value="Review" />
+</form>
+
+{% endblock %}
+{% block footer %}
+    Created by {{ combination.user }} on {{ combination.date }}
+{% endblock %}
