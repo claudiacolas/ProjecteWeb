@@ -43,4 +43,24 @@
     {% empty %}<li>Sorry, no combinations registered yet.</li>
     {% endfor %}
 </ul>
+<h1>Alcohols created by me (you can edit them):</h1>
+<ul>
+    {% for alcohol in latest_alcohol_list %}
+        {% if user == Alcohol.user %}
+        <li><a href="{% url 'web:alcohol_detail' alcohol.id %}">
+            {{ alcohol.name }}</a></li>
+    	{% endif %}
+    {% empty %}
+    {% endfor %}
+</ul>
+<h1>Mixs created by me (you can edit them):</h1>
+<ul>
+    {% for mix in latest_mix_list %}
+        {% if user == mix.user %}
+        <li><a href="{% url 'web:alcohol_detail' mix.id %}">
+            {{ mix.name }}</a></li>
+    	{% endif %}
+    {% empty %}
+    {% endfor %}
+</ul>
 {% endblock %}
