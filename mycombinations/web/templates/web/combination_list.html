@@ -33,4 +33,14 @@
     {% empty %}<li>Sorry, no mixs registered yet.</li>
     {% endfor %}
 </ul>
+<h1>Combinations created by me (you can edit them):</h1>
+<ul>
+    {% for combination in latest_combination_list %}
+        {% if user == combination.user %}
+        <li><a href="{% url 'web:combination_detail' combination.id %}">
+            {{ combination.name }}</a></li>
+    	{% endif %}
+    {% empty %}<li>Sorry, no combinations registered yet.</li>
+    {% endfor %}
+</ul>
 {% endblock %}

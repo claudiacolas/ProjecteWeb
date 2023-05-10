@@ -1,0 +1,15 @@
+{% extends "web/index.html" %}
+{% block content %}
+<h1>
+Alcohols
+    {% if user.is_authenticated %}(<a href="{% url 'web:alcohol_create' %}">CREATE NEW ALCOHOL</a>){% endif %}
+</h1>
+<ul>
+    {% for alcohol in latest_alcohol_list %}
+        <li><a href="{% url 'web:alcohol_detail' alcohol.id %}">
+            {{ acohol.name }}</a></li>
+    {% empty %}<li>Sorry, no alcohols registered yet.</li>
+    {% endfor %}
+</ul>
+<h1>
+    {% endblock %}

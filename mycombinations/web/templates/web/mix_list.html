@@ -1,0 +1,14 @@
+{% extends "web/index.html" %}
+{% block content %}
+<h1>
+    Mixs
+    {% if user.is_authenticated %}(<a href="{% url 'web:mix_create' %}">CREATE NEW MIX</a>){% endif %}
+</h1>
+<ul>
+    {% for mix in latest_mix_list %}
+        <li><a href="{% url 'web:mix_detail' mix.id %}">
+            {{ mix.name }}</a></li>
+    {% empty %}<li>Sorry, no mixs registered yet.</li>
+    {% endfor %}
+</ul>
+    {% endblock %}
