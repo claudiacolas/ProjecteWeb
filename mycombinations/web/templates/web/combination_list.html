@@ -2,13 +2,35 @@
 {% block content %}
 <h1>
     Combinations
-    {% if user.is_authenticated %}(<a href="{% url 'web:combination_create' %}">add</a>){% endif %}
+    {% if user.is_authenticated %}(<a href="{% url 'web:combination_create' %}">CREATE NEW COMBINATION</a>){% endif %}
 </h1>
 <ul>
     {% for combination in latest_combination_list %}
         <li><a href="{% url 'web:combination_detail' combination.id %}">
             {{ combination.name }}</a></li>
     {% empty %}<li>Sorry, no combinations registered yet.</li>
+    {% endfor %}
+</ul>
+<h1>
+    Alcohols
+    {% if user.is_authenticated %}(<a href="{% url 'web:alcohol_create' %}">CREATE NEW ALCOHOL</a>){% endif %}
+</h1>
+<ul>
+    {% for alcohol in latest_alcohol_list %}
+        <li><a href="{% url 'web:alcohol_detail' alcohol.id %}">
+            {{ acohol.name }}</a></li>
+    {% empty %}<li>Sorry, no alcohols registered yet.</li>
+    {% endfor %}
+</ul>
+<h1>
+    Mixs
+    {% if user.is_authenticated %}(<a href="{% url 'web:mix_create' %}">CREATE NEW MIX</a>){% endif %}
+</h1>
+<ul>
+    {% for mix in latest_mix_list %}
+        <li><a href="{% url 'web:mix_detail' mix.id %}">
+            {{ mix.name }}</a></li>
+    {% empty %}<li>Sorry, no mixs registered yet.</li>
     {% endfor %}
 </ul>
 {% endblock %}
