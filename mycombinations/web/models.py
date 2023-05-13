@@ -55,6 +55,9 @@ class Combination(models.Model):
     date = models.DateField(default=date.today)
     image=models.ImageField(upload_to="mycombinations", blank=True, null=True)
     
+    def __unicode__(self):
+        return u"%s" % self.name
+
     def __str__(self) -> str:
         return self.name+" with " +self.alcohol.brand.name+" and "+self.mix.brand.name
 
