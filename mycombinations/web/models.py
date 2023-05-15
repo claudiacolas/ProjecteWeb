@@ -21,7 +21,8 @@ class Brand(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('mycombinations:brand_detail', kwargs={'pkr': self.Brand.pk, 'pk': self.pk})
+        return reverse('web:brand_detail', kwargs={'pk': self.pk})
+
 
 class Alcohol(models.Model):
     name = models.CharField(max_length=200)
