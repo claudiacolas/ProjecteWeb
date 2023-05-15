@@ -5,9 +5,6 @@ Feature: Register Brand
 
  Background: There is a registered user and mix or alcohol
     Given Exists a user "user" with password "password"
-    And Exists mix registered by "user"
-      | name         |
-      | Lemon        |
 
   Scenario: Register just brand name
     Given I login as user "user" with password "password"
