@@ -73,7 +73,6 @@ class BrandCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.combination = Combination.objects.get(id=self.kwargs['pk'])
         return super(BrandCreate, self).form_valid(form)
 
 # Security Mixins
