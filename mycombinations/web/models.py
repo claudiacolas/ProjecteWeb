@@ -70,6 +70,7 @@ class Combination(models.Model):
             return 0
         else:
             ratingSum = sum([float(review.rating) for review in self.combinationreview_set.all()])
+            return ratingSum / reviewCount
 
 class Review(models.Model):
     RATING_CHOICES = ((1, 'one'), (2, 'two'), (3, 'three'), (4, 'four'), (5, 'five'))
