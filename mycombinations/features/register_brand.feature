@@ -14,22 +14,12 @@ Feature: Register Brand
     Then I'm viewing the details page for brand by "user"
       | name        |
       | Larios      |
-    And There are 1 brand
-    
-  Scenario: Register brand with picture
-    Given I login as user "user" with password "password"
-    When I register brand at alcohol "Ginebra"
-      | name            | image                    |
-      | Larios          | features/random.png      |
-    Then I'm viewing the details page for dish at restaurant "The Tavern" by "user"
-      | name            | image                    |
-      | Larios          | mycombinations/random.png |
-    And There are 1 dishes
+    And There are 1 brands
 
   Scenario: Try to register brand but not logged in
     Given I'm not logged in
-    When I register brand at alcohol "Ginebra"
+    When I register brand
       | name         |
       | Larios       |
     Then I'm redirected to the login form
-    And There are 0 dishes
+    And There are 0 brands
