@@ -55,7 +55,7 @@ urlpatterns = [
 
     # Create a brand, /mycombinations/brands/create/
     path('brands/create',
-         CombinationCreate.as_view(),
+         BrandCreate.as_view(),
          name='brand_create'),
 
     # Mixs details, ex.: /mycombinations/mixs/1/
