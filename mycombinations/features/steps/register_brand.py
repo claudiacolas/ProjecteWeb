@@ -29,7 +29,7 @@ def step_impl(context):
 
 @then('There are {count:n} brands')
 def step_impl(context, count):
-    from mycombinations.web.models import Brand
+    from web.models import Brand
     assert count == Brand.objects.count()
 
 @then('I\'m viewing the details page for brand by "{username}"')
@@ -37,7 +37,7 @@ def step_impl(context, username):
     q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
     from django.contrib.auth.models import User
     q_list.append(Q(('user', User.objects.get(username=username))))
-    from mycombinations.web.models import Brand
+    from web.models import Brand
     brand = Brand.objects.filter(reduce(operator.and_, q_list)).get()
     assert context.browser.url == context.get_url(brand)
 
