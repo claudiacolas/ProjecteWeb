@@ -34,7 +34,7 @@ class Alcohol(models.Model):
         return self.name+" of the brand "+self.brand.name
 
     def get_absolute_url(self):
-        return reverse('mycombinations:alcohol_detail', kwargs={'pkr': self.Alcohol.pk, 'pk': self.pk})
+        return reverse('web:alcohol_detail', kwargs={'pk': self.pk})
     
 class Mix(models.Model):
     name = models.CharField(max_length=200)
@@ -46,7 +46,7 @@ class Mix(models.Model):
         return self.name+" of the brand "+self.brand.name
 
     def get_absolute_url(self):
-        return reverse('mycombinations:mix_detail', kwargs={'pkr': self.Mix.pk, 'pk': self.pk})
+        return reverse('web:mix_detail', kwargs={'pk': self.pk})
 
 class Combination(models.Model):
     name = models.CharField(max_length=200)

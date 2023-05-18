@@ -9,18 +9,18 @@ Feature: Register Mix
   Scenario: Register just mix name
     Given I login as user "user" with password "password"
     When I register mix
-      | name        |
-      | Coca-Cola   |
+      | name        | brand     |
+      | Cola        | Coca-Cola |
     Then I'm viewing the details page for mix by "user"
-      | name        |
-      | Coca-Cola   |
+      | name        | brand     |
+      | Cola        | Coca-Cola |
     And There are 1 mix
     
   Scenario: Try to register mix but not logged in
     Given I'm not logged in
     When I register mix
-      | name          |
-      | FantaLlimona  |
+      | name          | brand   |
+      | Lemon         | Fanta   |
     Then I'm redirected to the login form
     And There are 0 mix
   

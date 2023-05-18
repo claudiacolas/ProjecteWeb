@@ -50,7 +50,7 @@ urlpatterns = [
 
     # Brands details, ex.: /mycombinations/brands/1/
     path('brands/<int:pk>',
-         BrandView.as_view(),
+         BrandDetail.as_view(),
          name='brand_detail'),
 
     # Create a brand, /mycombinations/brands/create/
@@ -58,29 +58,36 @@ urlpatterns = [
          BrandCreate.as_view(),
          name='brand_create'),
 
+     # Delete a /mycombinations/brand/<int:pk>/delete,
+     path('brands/<int:pk>/delete',
+          BrandDelete.as_view(),
+          name='brand_delete'),
+
     # Mixs details, ex.: /mycombinations/mixs/1/
     path('mixs/<int:pk>',
-         MixView.as_view(),
+         MixDetail.as_view(),
          name='mix_detail'),
 
-    # Create a brand, /mycombinations/mixs/create/
+    # Create a mix, /mycombinations/mixs/create/
     path('mixs/create',
          MixCreate.as_view(),
          name='mix_create'),
 
-    # Brands details, ex.: /mycombinations/alcohols/1/
+    # Alcohols details, ex.: /mycombinations/alcohols/1/
     path('alcohols/<int:pk>',
-         AlcoholView.as_view(),
-         name='alcohol_detail'),
+         AlcoholDetail.as_view(
+             model=Alcohol,
+            template_name='web/alcohol_detail.html'),
+        name='alcohol_detail'),
 
-    # Create a brand, /mycombinations/alcohols/create/
+    # Create an alcohol, /mycombinations/alcohols/create/
     path('alcohols/create',
          AlcoholCreate.as_view(),
          name='alcohol_create'),
 
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, }),
 
-    # Create a restaurant review, ex.: /mycombinations/combinations/1/reviews/create/
+    # Create a combination review, ex.: /mycombinations/combinations/1/reviews/create/
     path('combinations/<int:pk>/reviews/create',
         review,
         name='review_create'),

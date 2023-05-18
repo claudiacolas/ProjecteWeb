@@ -9,17 +9,17 @@ Feature: Register Combination
   Scenario: Register just combination name
     Given I login as user "user" with password "password"
     When I register combination
-      | name    |
-      | RumCola |
+      | name    | alcohol | mix  |
+      | RumCola | Rum     | Cola |
     Then I'm viewing the details page for combination by "user"
-      | name     |
-      | RumCola  |
+      | name    | alcohol | mix  |
+      | RumCola | Rum     | Cola |
     And There are 1 combinations
 
   Scenario: Try to register combination but not logged in
     Given I'm not logged in
     When I register combination
-      | name     |
-      | RumCola  |
+      | name    | alcohol | mix  |
+      | RumCola | Rum     | Cola |
     Then I'm redirected to the login form
     And There are 0 combination

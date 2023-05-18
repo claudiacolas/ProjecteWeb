@@ -10,7 +10,7 @@ use_step_matcher("parse")
 def step_impl(context, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
-    from mycombinations.web.models import Brand
+    from web.models import Brand
     for row in context.table:
         brand = Brand(user=user)
         for heading in row.headings:
@@ -43,7 +43,7 @@ def step_impl(context, username):
 
 @when('I edit the brand with name "{name}"')
 def step_impl(context, name):
-    from mycombinations.web.models import Brand
+    from web.models import Brand
     brand = Brand.objects.get(name=name)
     context.browser.visit(context.get_url('web:brand_edit', brand.pk))
     if context.browser.url == context.get_url('web:brand_edit', brand.pk)\

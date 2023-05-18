@@ -5,42 +5,17 @@
 <h1>
     {{ brand.name }}
     {% if user == brand.user %}
-        (<a href="{% url 'web:brand_edit' brand.id %}">edit</a>)
-    {% endif %}
+    <form action="{% url 'web:brand_delete' brand.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    {% endif %} 
 </h1>
 <p>{{ brand.description }}</p>
 {% if brand.image %}
     <p><img src="{{ brand.image.url }}"/></p>
 {% endif %}
 <p>Served by <a href="{% url 'web:brand_detail' brand.id %}">{{ brand.name }}</a></p>
-
-<h2>
-    Alcohols
-    {% if user.is_authenticated %}
-        (<a href="{% url 'web:alcohol_create' brand.id %}">add</a>)
-    {% endif %}
-</h2>
-<ul>
-    {% for alcohol in brands.alcohols.all %}
-        <li><a href="{% url 'web:alcohol_detail' brand.id alcohol.id %}">
-            {{ alcohol.name }}</a></li>
-    {% empty %}<li>Sorry, no alcohols for this brand yet.</li>
-    {% endfor %}
-</ul>
-
-<h2>
-    Mixs
-    {% if user.is_authenticated %}
-        (<a href="{% url 'web:mix_create' brand.id %}">add</a>)
-    {% endif %}
-</h2>
-<ul>
-    {% for mix in brands.mixs.all %}
-        <li><a href="{% url 'web:mix_detail' brand.id mix.id %}">
-            {{ mix.name }}</a></li>
-    {% empty %}<li>Sorry, no mixs for this brand yet.</li>
-    {% endfor %}
-</ul>
 
 {% endblock %}
 

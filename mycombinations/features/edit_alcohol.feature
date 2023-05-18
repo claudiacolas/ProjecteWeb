@@ -8,28 +8,28 @@ Feature: Edit Alcohol
     And Exists a user "user2" with password "password"
     And Exists combination registered by "user1"
       | name         | alcohol   | mix         |
-      | Roncola      | Ron       | Cola    |
+      | RumCola      | Rum       | Cola        |
     And Exists alcohol at combination "Roncola" by "user2"
       | name    | brand        |
-      |  Ron    | Negrita      |
+      | Rum     | Negrita      |
 
   Scenario: Edit owned combination registry alcohol
     Given I login as user "user2" with password "password"
-    When I view the details for alcohol "Ron"
+    When I view the details for alcohol "Rum"
     And I edit the current alcohol
       | brand           |
       | Negrita         |
-    Then I'm viewing the details page for alcohol at combination "Roncola" by "user2"
+    Then I'm viewing the details page for alcohol at combination "RumCola" by "user2"
       | name     | brand           |
-      | Ron      | Negrita         |
+      | Rum      | Negrita         |
     And There are 1 alcohols
 
   Scenario: Try to edit alcohol but not logged in
     Given I'm not logged in
-    When I view the details for alcohol "Ron"
+    When I view the details for alcohol "Rum"
     Then There is no "edit" link available
 
   Scenario: Try to edit mix but not the owner
     Given I login as user "user1" with password "password"
-    When I view the details for alcohol "Ron"
+    When I view the details for alcohol "Rum"
     Then There is no "edit" link available

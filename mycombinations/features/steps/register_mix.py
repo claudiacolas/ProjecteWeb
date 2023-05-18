@@ -10,7 +10,7 @@ use_step_matcher("parse")
 def step_impl(context, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
-    from mycombinations.web.models import Mix
+    from web.models import Mix
     for row in context.table:
         mix = Mix(user=user)
         for heading in row.headings:
@@ -29,7 +29,7 @@ def step_impl(context):
 
 @then('There are {count:n} mixs')
 def step_impl(context, count):
-    from mycombinations.web.models import Mix
+    from web.models import Mix
     assert count == Mix.objects.count()
 
 @then('I\'m viewing the details page for mix by "{username}"')
@@ -37,13 +37,13 @@ def step_impl(context, username):
     q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
     from django.contrib.auth.models import User
     q_list.append(Q(('user', User.objects.get(username=username))))
-    from mycombinations.web.models import Mix
+    from web.models import Mix
     mix = Mix.objects.filter(reduce(operator.and_, q_list)).get()
     assert context.browser.url == context.get_url(mix)
 
 @when('I edit the mix with name "{name}"')
 def step_impl(context, name):
-    from mycombinations.web.models import Mix
+    from web.models import Mix
     mix = Mix.objects.get(name=name)
     context.browser.visit(context.get_url('web:mix_edit', mix.pk))
     if context.browser.url == context.get_url('web:mix_edit', mix.pk)\

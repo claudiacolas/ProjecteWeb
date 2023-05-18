@@ -7,21 +7,21 @@ Feature: Edit Mix
     Given Exists a user "user1" with password "password"
     And Exists a user "user2" with password "password"
     And Exists combination registered by "user1"
-      | name         | alcohol   | mix         |
-      | Roncola      | Ron       | Cola    |
-    And Exists mix at combination "Roncola" by "user2"
+      | name         | alcohol    | mix       |
+      | RumCola      | Rum        | Cola      |
+    And Exists mix at combination "RumCola" by "user2"
       | name     | brand          |
-      |  Cola    | CocaCola       |
+      | Cola     | Coca-Cola      |
 
   Scenario: Edit owned combination registry mix
     Given I login as user "user2" with password "password"
     When I view the details for mix "Cola"
     And I edit the current mix
       | brand           |
-      | CocaCola        |
-    Then I'm viewing the details page for mix at combination "Roncola" by "user2"
+      | Coca-Cola       |
+    Then I'm viewing the details page for mix at combination "RumCola" by "user2"
       | name     | brand           |
-      | Cola     | CocaCola        |
+      | Cola     | Coca-Cola       |
     And There are 1 mixes
 
   Scenario: Try to edit mix but not logged in

@@ -3,18 +3,18 @@ Feature: View Brand
   As a user
   I want to view the registered brand details
 
-  Background: There is one alcohol with 2 brands and another without
+  Background: There is one brand with 2 alcohols and another without
     Given Exists a user "user1" with password "password"
     And Exists a user "user2" with password "password"
-    And Exists alcohol registered by "user1"
-      | name        |
-      | Ron         |
-    And Exists brand at alcohol "Ron" by "user1"
+    And Exists brand registered by "user1"
+      | name        |      
+      | Negrita     | 
+    And Exists alcohol at brand "Rum" by "user1"
       | name        |
       | Negrita     |
-    And Exists brand at alcohol "Ron" by "user2"
+    And Exists brand at alcohol "Rum" by "user2"
       | name        |
-      | Barcelo     |
+      | Bacardi     |
 
   Scenario: View details about owned brand
     Given I login as user "user1" with password "password"
@@ -34,8 +34,8 @@ Feature: View Brand
 
   Scenario: View details about other user brand
       Given I login as user "user1" with password "password"
-    When I view the details for brand "Barcelo"
+    When I view the details for brand "Bacardi"
     Then I'm viewing brand details including
       | name         |
-      | Barcelo      |
+      | Bacardi      |
     And There is no "edit" link available

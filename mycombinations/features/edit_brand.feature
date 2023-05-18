@@ -8,12 +8,10 @@ Feature: Edit Brand
     And Exists a user "user2" with password "password"
     And Exists alcohol registered by "user2"
       | name    | brand        |
-      |  Ron    | Negrita      |
-    And Exists brand at alcohol "Ron" by "user2"
+      | Rum     | Negrita      |
+    And Exists brand at alcohol "Rum" by "user2"
       | name     |
       | Negrita  |
-
-
 
   Scenario: Edit owned alcohol registry brand
     Given I login as user "user2" with password "password"
@@ -21,7 +19,7 @@ Feature: Edit Brand
     And I edit the current Brand
       | name        |
       | Negrita     |
-    Then I'm viewing the details page for brand at alcohol "Ron" by "user2"
+    Then I'm viewing the details page for brand at alcohol "Rum" by "user2"
       | name     |
       | Negrita  |
     And There are 1 brands

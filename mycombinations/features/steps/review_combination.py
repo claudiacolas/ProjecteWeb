@@ -6,9 +6,9 @@ use_step_matcher("parse")
 def step_impl(context, combination_name, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
-    from mycombinations.web.models import Combination
+    from web.models import Combination
     combination = Combination.objects.get(name=combination_name)
-    from mycombinations.web.models import CombinationReview
+    from web.models import CombinationReview
     for row in context.table:
         review = CombinationReview(combination=combination, user=user)
         for heading in row.headings:
@@ -17,7 +17,7 @@ def step_impl(context, combination_name, username):
 
 @when('I register a review at combination "{combination_name}"')
 def step_impl(context, combination_name):
-    from mycombinations.web.models import Combination
+    from web.models import Combination
     combination = Combination.objects.get(name=combination_name)
     for row in context.table:
         context.browser.visit(context.get_url(combination))
@@ -28,5 +28,5 @@ def step_impl(context, combination_name):
 
 @then('There are {count:n} reviews')
 def step_impl(context, count):
-    from mycombinations.web.models import CombinationReview
+    from web.models import CombinationReview
     assert count == CombinationReview.objects.count()

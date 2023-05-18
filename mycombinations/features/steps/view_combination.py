@@ -4,7 +4,7 @@ use_step_matcher("parse")
 
 @when('I view the details for combination "{combination_name}"')
 def step_impl(context,combination_name):
-    from mycombinations.web.models import Combination
+    from web.models import Combination
     combination = Combination.objects.get(name=combination_name)
     context.browser.visit(context.get_url(combination))
 

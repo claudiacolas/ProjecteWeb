@@ -4,19 +4,19 @@ from .models import Brand, Alcohol, Mix, Combination
 class BrandForm(ModelForm):
     class Meta:
         model = Brand
-        fields = ['name', 'type']
+        exclude = ('user', 'date',)
 
 class AlcoholForm(ModelForm):
     class Meta:
         model = Alcohol
-        fields = ['name', 'brand']
+        exclude = ('user', 'date')
 
 class MixForm(ModelForm):
     class Meta:
         model = Mix
-        fields = ['name', 'brand']
+        exclude = ('user', 'date')
 
 class CombinationForm(ModelForm):
     class Meta:
         model = Combination
-        fields = ['name', 'alcohol', 'mix','image']
+        exclude = ('user', 'date')

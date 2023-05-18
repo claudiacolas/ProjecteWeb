@@ -2,28 +2,45 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .forms import *
 from .models import *
 
 # Create your views here.
 
-class AlcoholView(generic.DetailView):
-    model = Alcohol
-    template_name = 'web/specificalcohol.html'
-
-class MixView(generic.DetailView):
+class MixDetail(generic.DetailView):
     model = Mix
-    template_name = 'web/specificmix.html'
+    template_name = 'web/mix_detail.html'
 
-class BrandView(generic.DetailView):
+    def get_context_data(self, **kwargs):
+        context = super(MixDetail, self).get_context_data(**kwargs)
+        return context
+    
+class AlcoholDetail(generic.DetailView):
+    model = Alcohol
+    template_name = 'web/alcohol_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AlcoholDetail, self).get_context_data(**kwargs)
+        return context
+
+class BrandDetail(generic.DetailView):
     model = Brand
-    template_name = 'web/specificbrand.html'
+    template_name = 'web/brand_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BrandDetail, self).get_context_data(**kwargs)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect('web/index.html/')
 
 class CombinationDetail(DetailView):
     model = Combination
@@ -50,7 +67,6 @@ class AlcoholCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.combination = Combination.objects.get(id=self.kwargs['pk'])
         return super(AlcoholCreate, self).form_valid(form)
     
 class MixCreate(LoginRequiredMixin, CreateView):
@@ -60,7 +76,6 @@ class MixCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.combination = Combination.objects.get(id=self.kwargs['pk'])
         return super(MixCreate, self).form_valid(form)
     
 class BrandCreate(LoginRequiredMixin, CreateView):
@@ -71,6 +86,13 @@ class BrandCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(BrandCreate, self).form_valid(form)
+    
+class BrandDelete(DeleteView):
+    def post(self, request, brand_id):
+        brand = get_object_or_404(Brand, id=brand_id)
+        if brand.user == request.user:
+            brand.delete()
+        return redirect('web/index.html')
 
 # Security Mixins
 
