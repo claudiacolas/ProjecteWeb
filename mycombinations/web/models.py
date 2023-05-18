@@ -63,7 +63,7 @@ class Combination(models.Model):
         return self.name+" with " +self.alcohol.brand.name+" and "+self.mix.brand.name
 
     def get_absolute_url(self):
-        return reverse('mycombinations:combination_detail', kwargs={'pk': self.pk})
+        return reverse('web:combination_detail', kwargs={'pk': self.pk})
 
     def averageRating(self):
         reviewCount = self.combinationsreview_set.count()

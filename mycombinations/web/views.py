@@ -13,9 +13,6 @@ from .models import *
 
 # Create your views here.
 
-
-
-
 class AlcoholView(generic.DetailView):
     model = Alcohol
     template_name = 'web/specificalcohol.html'
@@ -103,4 +100,4 @@ def review(request, pk):
         user=request.user,
         combination=combination)
     new_review.save()
-    return HttpResponseRedirect(reverse('mycombinations:combination_detail', args=(combination.id,)))
+    return HttpResponseRedirect(reverse('web:combination_detail', args=(combination.id,)))
