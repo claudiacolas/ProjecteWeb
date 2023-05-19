@@ -8,10 +8,10 @@ Feature: View Mix
     And Exists a user "user2" with password "password"
     And Exists combination registered by "user1"
       | name        |
-      | Roncola     |
+      | RumCola     |
     And Exists mix at combination "Roncola" by "user1"
       | name       | brand        |
-      | Cola       | CocaCola      |
+      | Cola       | Coca-Cola      |
     And Exists mix at combination "Roncola" by "user2"
       | name       | brand        |
       | Cola       | Hacendado    |
@@ -21,7 +21,7 @@ Feature: View Mix
     When I view the details for mix "Cola"
     Then I'm viewing mix details including
       | name       | brand        |
-      | Cola       | CocaCola     |
+      | Cola       | Coca-Cola     |
     And There is "edit" link available
 
   Scenario: View details about mix but not logged in
@@ -29,7 +29,7 @@ Feature: View Mix
     When I view the details for mix "Cola"
     Then I'm viewing mix details including
       | name       | brand        |
-      | Cola       | CocaCola      |
+      | Cola       | Coca-Cola      |
     And There is no "edit" link available
 
   Scenario: View details about other user mix

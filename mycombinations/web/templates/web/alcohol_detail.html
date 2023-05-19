@@ -7,7 +7,7 @@
     {% if user == alcohol.user %}
     <form action="{% url 'web:alcohol_delete' alcohol.id %}" method="post">
         {% csrf_token %}
-        <button type="submit">Eliminar</button>
+        <button type="submit">Delete alcohol</button>
     </form>
     {% endif %} 
 </h1>

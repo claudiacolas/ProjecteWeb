@@ -7,7 +7,7 @@
     {% if user == brand.user %}
     <form action="{% url 'web:brand_delete' brand.id %}" method="post">
         {% csrf_token %}
-        <button type="submit">Eliminar</button>
+        <button type="submit">Delete brand</button>
     </form>
     {% endif %} 
 </h1>

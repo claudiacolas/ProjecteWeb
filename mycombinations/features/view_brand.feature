@@ -9,9 +9,9 @@ Feature: View Brand
     And Exists brand registered by "user1"
       | name        |      
       | Negrita     | 
-    And Exists alcohol at brand "Rum" by "user1"
+    And Exists alcohol at brand "Negrita" by "user1"
       | name        |
-      | Negrita     |
+      | Rum         |
     And Exists brand at alcohol "Rum" by "user2"
       | name        |
       | Bacardi     |

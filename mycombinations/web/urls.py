@@ -41,14 +41,13 @@ urlpatterns = [
      # Delete a /mycombinations/alcohols/<int:pk>/delete,
      path('combinations/<int:pk>/delete',
           CombinationDelete.as_view(),
-          name='alcohol_delete'),
+          name='combination_delete'),
 
      # Alcohol list of instances a /mycombinations/alcohols,
      path('brands/',
           BrandList.as_view(),
           name='brand_list'),
 
-    
     # Brands details, ex.: /mycombinations/brands/1/
     path('brands/<int:pk>',
          BrandDetail.as_view(),
