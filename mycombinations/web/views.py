@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from .forms import *
 from .models import *
@@ -36,11 +37,6 @@ class BrandDetail(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(BrandDetail, self).get_context_data(**kwargs)
         return context
-    
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.delete()
-        return redirect('web/index.html/')
 
 class CombinationDetail(DetailView):
     model = Combination
@@ -88,11 +84,56 @@ class BrandCreate(LoginRequiredMixin, CreateView):
         return super(BrandCreate, self).form_valid(form)
     
 class BrandDelete(DeleteView):
-    def post(self, request, brand_id):
+    model = Brand
+
+    def get_success_url(self):
+        return reverse('web:combination_list')
+
+    def post(self, request, **kwargs):
+        brand_id = kwargs['pk']
         brand = get_object_or_404(Brand, id=brand_id)
         if brand.user == request.user:
             brand.delete()
-        return redirect('web/index.html')
+        return redirect(self.get_success_url())
+
+class MixDelete(DeleteView):
+    model = Mix
+
+    def get_success_url(self):
+        return reverse('web:combination_list')
+
+    def post(self, request, **kwargs):
+        mix_id = kwargs['pk']
+        mix = get_object_or_404(Mix, id=mix_id)
+        if mix.user == request.user:
+            mix.delete()
+        return redirect(self.get_success_url())
+    
+class AlcoholDelete(DeleteView):
+    model = Alcohol
+
+    def get_success_url(self):
+        return reverse('web:combination_list')
+
+    def post(self, request, **kwargs):
+        alcohol_id = kwargs['pk']
+        alcohol = get_object_or_404(Alcohol, id=alcohol_id)
+        if alcohol.user == request.user:
+            alcohol.delete()
+        return redirect(self.get_success_url())
+    
+class CombinationDelete(DeleteView):
+    model = Combination
+
+    def get_success_url(self):
+        return reverse('web:combination_list')
+
+    def post(self, request, **kwargs):
+        combination_id = kwargs['pk']
+        combination = get_object_or_404(Combination, id=combination_id)
+        if combination.user == request.user:
+            combination.delete()
+        return redirect(self.get_success_url())
 
 # Security Mixins
 

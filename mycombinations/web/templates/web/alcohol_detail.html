@@ -4,6 +4,12 @@
 
 <h1>
     {{ alcohol.name }}
+    {% if user == alcohol.user %}
+    <form action="{% url 'web:alcohol_delete' alcohol.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    {% endif %} 
 </h1>
 <p>{{ alcohol.description }}</p>
 {% if alcohol.image %}

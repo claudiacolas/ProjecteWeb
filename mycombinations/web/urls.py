@@ -48,6 +48,11 @@ urlpatterns = [
              form_class=CombinationForm),
          name='combination_edit'),
 
+     # Delete a /mycombinations/alcohols/<int:pk>/delete,
+     path('combinations/<int:pk>/delete',
+          CombinationDelete.as_view(),
+          name='combination_delete'),
+
     # Brands details, ex.: /mycombinations/brands/1/
     path('brands/<int:pk>',
          BrandDetail.as_view(),
@@ -73,6 +78,11 @@ urlpatterns = [
          MixCreate.as_view(),
          name='mix_create'),
 
+     # Delete a /mycombinations/mixs/<int:pk>/delete,
+     path('mixs/<int:pk>/delete',
+          MixDelete.as_view(),
+          name='mix_delete'),
+
     # Alcohols details, ex.: /mycombinations/alcohols/1/
     path('alcohols/<int:pk>',
          AlcoholDetail.as_view(
@@ -84,6 +94,11 @@ urlpatterns = [
     path('alcohols/create',
          AlcoholCreate.as_view(),
          name='alcohol_create'),
+
+     # Delete a /mycombinations/alcohols/<int:pk>/delete,
+     path('alcohols/<int:pk>/delete',
+          AlcoholDelete.as_view(),
+          name='alcohol_delete'),
 
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, }),
 

@@ -9,6 +9,13 @@
     {% if user == combination.user %}
         (<a href="{% url 'web:combination_edit' combination.id %}">edit</a>)
     {% endif %}
+
+    {% if user == combination.user %}
+    <form action="{% url 'web:combination_delete' combination.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    {% endif %} 
 </h1>
 
     {% if combination.image %}
