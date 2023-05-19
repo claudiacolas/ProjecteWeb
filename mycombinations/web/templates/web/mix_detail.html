@@ -7,7 +7,7 @@
     {% if user == mix.user %}
     <form action="{% url 'web:mix_delete' mix.id %}" method="post">
         {% csrf_token %}
-        <button type="submit">Eliminar</button>
+        <button type="submit">Delete mix</button>
     </form>
     {% endif %} 
 </h1>
