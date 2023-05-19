@@ -18,16 +18,6 @@ urlpatterns = [
              context_object_name='latest_combination_list',
              template_name='web/combination_list.html'),
          name='combination_list'),
-    path('',ListView.as_view(
-             queryset=Alcohol.objects.filter(date__lte=timezone.now()).order_by('-date')[:5],
-             context_object_name='latest_alcohol_list',
-             template_name='web/alcohol_list.html'),
-         name='alcohol_list'),
-    path('',ListView.as_view(
-             queryset=Mix.objects.filter(date__lte=timezone.now()).order_by('-date')[:5],
-             context_object_name='latest_mix_list',
-             template_name='web/mix_list.html'),
-         name='mix_list'),
 
     # Combination details, ex.: /mycombinations/combinations/1/
     path('combinations/<int:pk>',
@@ -51,8 +41,14 @@ urlpatterns = [
      # Delete a /mycombinations/alcohols/<int:pk>/delete,
      path('combinations/<int:pk>/delete',
           CombinationDelete.as_view(),
-          name='combination_delete'),
+          name='alcohol_delete'),
 
+     # Alcohol list of instances a /mycombinations/alcohols,
+     path('brands/',
+          BrandList.as_view(),
+          name='brand_list'),
+
+    
     # Brands details, ex.: /mycombinations/brands/1/
     path('brands/<int:pk>',
          BrandDetail.as_view(),
@@ -67,6 +63,12 @@ urlpatterns = [
      path('brands/<int:pk>/delete',
           BrandDelete.as_view(),
           name='brand_delete'),
+     
+     # Alcohol list of instances a /mycombinations/alcohols,
+     path('mixs/',
+          MixList.as_view(),
+          name='mix_list'),
+
 
     # Mixs details, ex.: /mycombinations/mixs/1/
     path('mixs/<int:pk>',
@@ -82,6 +84,11 @@ urlpatterns = [
      path('mixs/<int:pk>/delete',
           MixDelete.as_view(),
           name='mix_delete'),
+
+     # Alcohol list of instances a /mycombinations/alcohols,
+     path('alcohols/',
+          AlcoholList.as_view(),
+          name='alcohol_list'),
 
     # Alcohols details, ex.: /mycombinations/alcohols/1/
     path('alcohols/<int:pk>',

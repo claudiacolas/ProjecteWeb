@@ -1,0 +1,20 @@
+{% extends "web/index.html" %}
+{% block content %}
+<h1>
+Brands
+    {% if user.is_authenticated %}
+    <form action="{% url 'web:brand_create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Create new brand</button>
+    </form>
+    {% endif %}
+</h1>
+<ul>
+    {% for brand in brands %}
+        <li><a href="{% url 'web:brand_detail' brand.id %}">{{ brand.name }}</a></li>
+    {% empty %}
+        <li>Sorry, no brands registered yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

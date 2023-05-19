@@ -2,8 +2,8 @@
 {% block content %}
 <h1>
     Combinations
-    {% if user.is_authenticated %}(<a href="{% url 'web:combination_create' %}">CREATE NEW COMBINATION</a>){% endif %}
 </h1>
+
 <ul>
     {% for combination in latest_combination_list %}
         <li><a href="{% url 'web:combination_detail' combination.id %}">
@@ -11,6 +11,10 @@
     {% empty %}<li>Sorry, no combinations registered yet.</li>
     {% endfor %}
 </ul>
+
+<h3>Do you want to register a Combination?
+    {% if user.is_authenticated %}(<a href="{% url 'web:combination_create' %}">Click here!</a>){% endif %}
+</h3>
 
 <h3>
     Do you want to register a Brand?

@@ -2,14 +2,18 @@
 {% block content %}
 <h1>
 Alcohols
-    {% if user.is_authenticated %}(<a href="{% url 'web:alcohol_create' %}">CREATE NEW ALCOHOL</a>){% endif %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'web:alcohol_create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Create new alcohol</button>
+    </form>
+    {% endif %}
 </h1>
 <ul>
-    {% for alcohol in latest_alcohol_list %}
-        <li><a href="{% url 'web:alcohol_detail' alcohol.id %}">
-            {{ acohol.name }}</a></li>
-    {% empty %}<li>Sorry, no alcohols registered yet.</li>
+    {% for alcohol in alcohols %}
+        <li><a href="{% url 'web:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></li>
+    {% empty %}
+        <li>Sorry, no alcohols registered yet.</li>
     {% endfor %}
 </ul>
-<h1>
     {% endblock %}

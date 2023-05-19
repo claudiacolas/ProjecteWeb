@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.decorators import method_decorator
 from django.views import generic
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -13,6 +13,33 @@ from .forms import *
 from .models import *
 
 # Create your views here.
+
+class AlcoholList(ListView):
+    model = Alcohol
+    template_name = 'web/alcohol_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AlcoholList, self).get_context_data(**kwargs)
+        context['alcohols'] = Alcohol.objects.all() 
+        return context
+
+class BrandList(ListView):
+    model = Brand
+    template_name = 'web/brand_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BrandList, self).get_context_data(**kwargs)
+        context['brands'] = Brand.objects.all() 
+        return context    
+    
+class MixList(ListView):
+    model = Mix
+    template_name = 'web/mix_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MixList, self).get_context_data(**kwargs)
+        context['mixs'] = Mix.objects.all() 
+        return context
 
 class MixDetail(generic.DetailView):
     model = Mix

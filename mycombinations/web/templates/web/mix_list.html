@@ -2,13 +2,18 @@
 {% block content %}
 <h1>
     Mixs
-    {% if user.is_authenticated %}(<a href="{% url 'web:mix_create' %}">CREATE NEW MIX</a>){% endif %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'web:mix_create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Create new mix</button>
+    </form>
+    {% endif %}
 </h1>
 <ul>
-    {% for mix in latest_mix_list %}
-        <li><a href="{% url 'web:mix_detail' mix.id %}">
-            {{ mix.name }}</a></li>
-    {% empty %}<li>Sorry, no mixs registered yet.</li>
+    {% for mix in mixs %}
+        <li><a href="{% url 'web:mix_detail' mix.id %}">{{ mix.name }}</a></li>
+    {% empty %}
+        <li>Sorry, no mixs registered yet.</li>
     {% endfor %}
 </ul>
     {% endblock %}

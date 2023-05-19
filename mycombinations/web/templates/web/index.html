@@ -43,6 +43,9 @@
             <p><a href="{% url 'login' %}?next={{request.path}}">Login</a></p>
         {% endif %}
      </li>
+     <li><a href="{% url 'web:alcohol_list' %}">Alcohols</a></li>
+        <li><a href="{% url 'web:mix_list' %}">Mixs</a></li>
+        <li><a href="{% url 'web:brand_list' %}">Brands</a></li>
     </ul>
   </nav>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
@@ -68,5 +71,3 @@
 </div>
 
 </body>
-
-</html>
