@@ -8,7 +8,7 @@ Feature: View Alcohol
     And Exists a user "user2" with password "password"
     And Exists combination registered by "user1"
       | name        |
-      | Roncola     |
+      | Rumcola     |
     And Exists alcohol at combination "Roncola" by "user1"
       | name      | brand        |
       | Ron       | Negrita      |
@@ -18,7 +18,7 @@ Feature: View Alcohol
     When I view the details for alcohol "Ron"
     Then I'm viewing alcohol details including
       | name      | brand        |
-      | Ron       | Negrita      |
+      | Rum       | Negrita      |
     And There is "edit" link available
 
   Scenario: View details about alcohol but not logged in
@@ -26,7 +26,7 @@ Feature: View Alcohol
     When I view the details for alcohol "Ron"
     Then I'm viewing alcohol details including
       | name      | brand        |
-      | Ron       | Negrita      |
+      | Rum       | Negrita      |
     And There is no "edit" link available
 
   Scenario: View details about other user alcohol
@@ -34,5 +34,5 @@ Feature: View Alcohol
     When I view the details for alcohol "Ginebra"
     Then I'm viewing alcohol details including
       | name         | brand    |
-      | Ginebra      | Gordon's |
+      | Gin          | Gordon's |
     And There is no "edit" link available
