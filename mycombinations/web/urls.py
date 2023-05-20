@@ -73,7 +73,8 @@ urlpatterns = [
     path('mixs/<int:pk>',
          MixDetail.as_view(),
          name='mix_detail'),
-
+  # Mixs details, ex.: /mycombinations/mixs/1/
+   
     # Create a mix, /mycombinations/mixs/create/
     path('mixs/create',
          MixCreate.as_view(),

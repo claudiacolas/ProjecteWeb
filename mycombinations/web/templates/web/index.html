@@ -57,17 +57,135 @@
 </header>
 
 <body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <div id="content">
-    <h3>How does "MyCombinations" work?</h3>
+ <div class="container">
+  <h3>How does "MyCombinations" work?</h3>
     <p>Here you have some combinations to drink.</p>
     <p>If you login you can add some examples to remember the ones you have liked the more.</p>
     <p>You can edit the instances of your own.</p>
+    </br>
+    <h3 ><img src="https://s11.gifyu.com/images/winking-face_1f609.gif"  width="75" height="75" alt="winking-face_1f609.gif" align="right">Use TheCocktailsDB and get some ideas of Combinatinos</h3>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type a cocktail name..."
+        id="user-inp"
+        value=""
+      />
+      <button id="search-btn">Search</button>
+    </div>
+    <div id="result"></div>
+    <br>
+  </div>
+    
     {% block content %}
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% endblock %}
 </div>
 
 <div id="footer">
+
+  <script >let result = document.getElementById("result");
+    let searchBtn = document.getElementById("search-btn");
+    let url = "https://thecocktaildb.com/api/json/v1/1/search.php?s=";
+    let getInfo = () => {
+      let userInp = document.getElementById("user-inp").value;
+      if (userInp.length == 0) {
+        result.innerHTML = `<h3 class="msg">The input field cannot be empty</h3>`;
+      } else {
+        fetch(url + userInp)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("user-inp").value = "";
+            console.log(data);
+            console.log(data.drinks[0]);
+            let myDrink = data.drinks[0];
+            console.log(myDrink.strDrink);
+            console.log(myDrink.strDrinkThumb);
+            console.log(myDrink.strInstructions);
+            let count = 1;
+            let ingredients = [];
+            for (let i in myDrink) {
+              let ingredient = "";
+              let measure = "";
+              if (i.startsWith("strIngredient") && myDrink[i]) {
+                ingredient = myDrink[i];
+                if (myDrink[`strMeasure` + count]) {
+                  measure = myDrink[`strMeasure` + count];
+                } else {
+                  measure = "";
+                }
+                count += 1;
+                ingredients.push(`${measure} ${ingredient}`);
+              }
+            }
+            console.log(ingredients);
+            result.innerHTML = `
+          <img src=${myDrink.strDrinkThumb}>
+          <h2>${myDrink.strDrink}</h2>
+          <h3>Ingredients:</h3>
+          <ul class="ingredients"></ul>
+          <h3>Instructions:</h3>
+          <p>${myDrink.strInstructions}</p>
+          `;
+            let ingredientsCon = document.querySelector(".ingredients");
+            ingredients.forEach((item) => {
+              let listItem = document.createElement("li");
+              listItem.innerText = item;
+              ingredientsCon.appendChild(listItem);
+            });
+          })
+          .catch(() => {
+            result.innerHTML = `<h3 class="msg">Please enter a valid input</h3>`;
+          });
+      }
+    };
+
+
+    searchBtn.addEventListener("click", getInfo);</script>
+  <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+      <style>.container {
+          width: 90vw;
+          max-width: 45em;
+          background-color: #ffffff;
+          border-radius: 0.6em;
+        }
+        .search-container {
+         
+          border-radius: 0.6em;
+          display: grid;
+          grid-template-columns: 9fr 3fr;
+          gap: 1em;
+          margin-bottom: 1.2em;
+          box-shadow: 0 1em 3em rgba(2, 9, 38, 0.25);
+
+        }
+        .search-container input {
+          border-radius: 0.6em;
+
+          font-size: 1em;
+          padding: 0.6em 0.3em;
+          border: 1px #1f194c;
+          outline: none;
+          color: #1f194c;
+          border-bottom: 1.5px solid #1f194c;
+        }
+        .search-container input:focus {
+          border-color: #B22172;
+        }
+        .search-container button {
+          font-size: 1em;
+          border-radius: 2em;
+          background-color: #B22172;
+          border: none;
+          outline: none;
+          color: #ffffff;
+          cursor: pointer;
+        }</style>
     {% block footer %}{% endblock %}
 </div>
 

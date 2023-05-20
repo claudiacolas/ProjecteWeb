@@ -14,6 +14,8 @@ from .models import *
 
 # Create your views here.
 
+
+
 class AlcoholList(ListView):
     model = Alcohol
     template_name = 'web/alcohol_list.html'

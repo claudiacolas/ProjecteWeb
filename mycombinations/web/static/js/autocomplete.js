@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $.getJSON("/static/drinks.json", {}, function (drinks) {
-        $("#idDrink").autocomplete({
+        $("#id_name").autocomplete({
             source: drinks
         });
     });
 
-    $("#idDrink").autocomplete({
+    $("#id_name").autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: "www.thecocktaildb.com/api/json/v1/1/search.php?",
+                url: "www.thecocktaildb.com/api/json/v1/1/search.php?i",
                 data: {
                     name_startsWith: request.term,
                 },
@@ -22,10 +22,10 @@ $(document).ready(function() {
                 }
             });
         },
-        minLength: 2,
+        minLength: 1,
         select: function( event, ui ) {
             if (ui.item) {
-                $("#idDrink").val(ui.item.strIngredient1)
+                $("#id_value").val(ui.item.strIngredient1)
             }
         }
     });
