@@ -2,8 +2,10 @@
 
 {% block content %}
 
+<span vocab="http://schema.org/Drug" typeof="Drug">
+
 <h1>
-    {{ alcohol.name }}
+    <span property="name">{{ alcohol.name }}</span>
     {% if user == alcohol.user %}
     <form action="{% url 'web:alcohol_delete' alcohol.id %}" method="post">
         {% csrf_token %}
@@ -11,8 +13,9 @@
     </form>
     {% endif %} 
 </h1>
-<p>{{ alcohol.description }}</p>
+<p><span property="description">{{ alcohol.description }}</p></span>
 {% if alcohol.image %}
+    <span property="image">{{ alcohol.image }}</span>
     <p><img src="{{ alcohol.image.url }}"/></p>
 {% endif %}
 <p>Served by <a href="{% url 'web:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></p>
