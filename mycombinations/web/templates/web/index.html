@@ -30,22 +30,22 @@
     background-color: #F6BCF2;
   }
 </style>
-<html lang="en">
+<html lang="en" prefix="schema: http://schema.org/">
 <header>
     <nav>
     <h3 class="tittle">What will I drink today ?</h3>
     <ul>
-      <li><a href="http://127.0.0.1:8000/">HOME</a></li>
+      <li><a href="http://127.0.0.1:8000/"property="url">Home</a></li>
         <li>
         {% if user.is_authenticated %}
-            <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
+            <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}"property="url">logout</a></p>
         {% else %}
-            <p><a href="{% url 'login' %}?next={{request.path}}">Login</a></p>
+            <p><a href="{% url 'login' %}?next={{request.path}}"property="url">Login</a></p>
         {% endif %}
      </li>
-     <li><a href="{% url 'web:alcohol_list' %}">Alcohols</a></li>
-        <li><a href="{% url 'web:mix_list' %}">Mixs</a></li>
-        <li><a href="{% url 'web:brand_list' %}">Brands</a></li>
+     <li><a href="{% url 'web:alcohol_list' %}"property="url">Alcohols</a></li>
+        <li><a href="{% url 'web:mix_list' %}"property="url">Mixs</a></li>
+        <li><a href="{% url 'web:brand_list' %}"property="url">Brands</a></li>
     </ul>
   </nav>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
@@ -56,7 +56,7 @@
     <title>{% block title %}Mycombinations by Mycombinations{% endblock %}</title>
 </header>
 
-<body>
+<body vocab="schema: http://schema.org/" typeof="WebPage">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <div id="content">
  <div class="container">
@@ -84,8 +84,7 @@
     {% endblock %}
 </div>
 
-<div id="footer">
-
+<div id="footer" typeof="schema:WebPage">
   <script >let result = document.getElementById("result");
     let searchBtn = document.getElementById("search-btn");
     let url = "https://thecocktaildb.com/api/json/v1/1/search.php?s=";
@@ -190,3 +189,5 @@
 </div>
 
 </body>
+</html>
+

@@ -1,19 +1,26 @@
 {% extends "web/index.html" %}
+
 {% block content %}
-<h1>
+<h1 property="schema:name">
     Mixs
     {% if user.is_authenticated %}
-    <form action="{% url 'web:mix_create' %}" method="post">
+    <form action="{% url 'web:mix_create' %}" method="post" property="schema:CreateMix">
         {% csrf_token %}
         <button type="submit">Create new mix</button>
     </form>
     {% endif %}
 </h1>
+
 <ul>
     {% for mix in mixs %}
-        <li><a href="{% url 'web:mix_detail' mix.id %}">{{ mix.name }}</a></li>
+        <li typeof="schema:MixList" resource="#mix{{ mix.id }}">
+            <a href="{% url 'web:mix_detail' mix.id %}" property="schema:MixDetail" typeof="schema:Mix" about="#mix{{ mix.id }}">
+                {{ mix.name }}
+            </a>
+        </li>
     {% empty %}
         <li>Sorry, no mixs registered yet.</li>
     {% endfor %}
 </ul>
-    {% endblock %}
+
+{% endblock %}
