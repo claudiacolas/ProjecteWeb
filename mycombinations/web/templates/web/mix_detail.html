@@ -5,7 +5,7 @@
 <span vocab="http://schema.org/IndividualProduct" typeof="IndividualProduct">
 
 <h1>
-    {{ mix.name }}
+    <span property="name">{{ mix.name }}</span>
     {% if user == mix.user %}
     <form action="{% url 'web:mix_delete' mix.id %}" method="post">
         {% csrf_token %}
@@ -13,8 +13,9 @@
     </form>
     {% endif %} 
 </h1>
-<p>{{ mix.description }}</p>
+<p><span property="description">{{ mix.description }}</span></p>
 {% if mix.image %}
+    <span property="image">{{ mix.image }}</span>
     <p><img src="{{ mix.image.url }}"/></p>
 {% endif %}
 <p>Served by <a href="{% url 'web:mix_detail' mix.id %}">{{ mix.name }}</a></p>
