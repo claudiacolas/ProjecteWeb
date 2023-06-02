@@ -18,6 +18,9 @@
     <span property="image">{{ alcohol.image }}</span>
     <p><img src="{{ alcohol.image.url }}"/></p>
 {% endif %}
+
+<p>The brand of this alcohol is: <span property="brand">{{ alcohol.brand }}</span></p>
+
 <p>Served by <a href="{% url 'web:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></p>
 
 {% block footer %}

@@ -18,6 +18,9 @@
     <span property="image">{{ mix.image }}</span>
     <p><img src="{{ mix.image.url }}"/></p>
 {% endif %}
+
+<p>The brand of this mix is: <span property="brand">{{ mix.brand }}</span></p>
+
 <p>Served by <a href="{% url 'web:mix_detail' mix.id %}">{{ mix.name }}</a></p>
 
 {% endblock %}
