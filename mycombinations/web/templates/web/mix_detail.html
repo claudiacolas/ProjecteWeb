@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<span vocab="http://schema.org/IndividualProduct" typeof="IndividualProduct">
+<span vocab="http://schema.org" typeof="IndividualProduct">
 
 <h1>
     <span property="name">{{ mix.name }}</span>
@@ -13,18 +13,30 @@
     </form>
     {% endif %} 
 </h1>
-<p><span property="description">{{ mix.description }}</span></p>
+
 {% if mix.image %}
-    <span property="image">{{ mix.image }}</span>
-    <p><img src="{{ mix.image.url }}"/></p>
+    <span property="image">{{ mix.image }} </span>
+    <p><img src="{{ mix.image.url }}" style="width: 200px; height: auto;"/></p>
 {% endif %}
 
 <p>The brand of this mix is: <span property="brand">{{ mix.brand }}</span></p>
 
-<p>Served by <a href="{% url 'web:mix_detail' mix.id %}">{{ mix.name }}</a></p>
+<div rel="offers">
+    <div typeof="Offer">Here are some data relevant about purchasing the product:
+      <li><b>What's its availability? </b><span property="availability" href="https://schema.org/InStock">Available in your supermarkets and trusted web pages</span></li>
+      <li><b>How much does it cost? </b> Around <span property="price">5</span><span property="priceCurrency">EUR</span></li>
+      <li><b>Is it potentially restricted to adults? </b><span property="hasAdultConsideration" content="false">No</span></li>
+    </div>
+</div>
 
-{% endblock %}
+<p>
+    <div rel="subjectOf">
+        <span typeof="CreativeWork">
+    This mix was created by
+    <span property="author">{{ mix.user }}</span>
+    on
+    <span property="dateCreated">{{ mix.date }}</span></span> 
+    </div>
+</p>
 
-{% block footer %}
-    Created by {{ mix.user }} on {{ mix.date }}
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<span vocab="http://schema.org/Drug" typeof="Drug">
+<span vocab="http://schema.org" typeof="Drug">
 
 <h1>
     <span property="name">{{ alcohol.name }}</span>
@@ -13,18 +13,29 @@
     </form>
     {% endif %} 
 </h1>
-<p><span property="description">{{ alcohol.description }}</span></p>
 {% if alcohol.image %}
-    <span property="image">{{ alcohol.image }}</span>
-    <p><img src="{{ alcohol.image.url }}"/></p>
+    <span property="image">{{ alcohol.image }} </span>
+    <p><img src="{{ alcohol.image.url }}" style="width: 200px; height: auto;"/></p>
 {% endif %}
 
 <p>The brand of this alcohol is: <span property="brand">{{ alcohol.brand }}</span></p>
 
-<p>Served by <a href="{% url 'web:alcohol_detail' alcohol.id %}">{{ alcohol.name }}</a></p>
+<div rel="offers">
+    <div typeof="Offer">Here are some data relevant about purchasing the product:
+      <li><b>What's its availability? </b><span property="availability" href="https://schema.org/InStock">Available in your supermarkets and trusted web pages</span></li>
+      <li><b>How much does it cost? </b> Around <span property="price">20</span><span property="priceCurrency">EUR</span></li>
+      <li><b>Is it potentially restricted to adults? </b><span property="hasAdultConsideration" content="true">Yes</span></li>
+    </div>
+</div>
 
-{% block footer %}
-    Created by {{ alcohol.user }} on {{ alcohol.date }}
-{% endblock %}
+<p>
+    <div rel="subjectOf">
+        <span typeof="CreativeWork">
+    This alcohol was created by
+    <span property="author">{{ alcohol.user }}</span>
+    on
+    <span property="dateCreated">{{ alcohol.date }}</span></span> 
+    </div>
+</p>
 
 {% endblock %}

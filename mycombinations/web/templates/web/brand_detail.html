@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<span vocab="http://schema.org/Drug" typeof="Brand">
+<span vocab="http://schema.org" typeof="Brand">
 
 <h1>
     <span property="name">{{ brand.name }}</span>
@@ -13,15 +13,30 @@
     </form>
     {% endif %} 
 </h1>
-<p><span property="description">{{ brand.description }}</span></p>
+
 {% if brand.image %}
-    <span property="image">{{ brand.image }}</span>
-    <p><img src="{{ brand.image.url }}"/></p>
+    <span property="image">{{ brand.image }} </span>
+    <p><img src="{{ brand.image.url }}" style="width: 200px; height: auto;"/></p>
 {% endif %}
-<p>Served by <a href="{% url 'web:brand_detail' brand.id %}">{{ brand.name }}</a></p>
 
-{% endblock %}
+<h2>Type:</h2>
 
-{% block footer %}
-    Created by {{ brand.user }} on {{ brand.date }}
+{% if brand.type == 1 %}
+<p><span property="description">This brand corresponds to alcohol products.</span></p>
+{% endif %}
+
+{% if brand.type == 2 %}
+<p><span property="description">This brand corresponds to soft drinks products, used as mixs.</span></p>
+{% endif %}
+
+<p>
+    <div rel="subjectOf">
+        <span typeof="CreativeWork">
+    This alcohol was created by
+    <span property="author">{{ brand.user }}</span>
+    on
+    <span property="dateCreated">{{ brand.date }}</span></span> 
+    </div>
+</p>
+
 {% endblock %}

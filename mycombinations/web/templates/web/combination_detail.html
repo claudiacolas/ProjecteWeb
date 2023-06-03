@@ -2,7 +2,7 @@
 {% block title %}MyCombinations - {{ combination.name }}{% endblock %}
 {% block content %}
 
-<span vocab="http://schema.org/Recipe" typeof="Recipe">
+<span vocab="http://schema.org" typeof="Recipe">
 
 <h1>
     <span property="name">{{ combination.name }}</span>
@@ -19,7 +19,7 @@
 </h1>
     {% if combination.image %}
     <span property="image">{{ combination.image }}</span>
-    <p><img src="{{ combination.image.url }}"/></p>
+    <p><img src="{{ combination.image.url }} "/></p>
     {% endif %}
 
     <h2>Made by:</h2>
@@ -30,8 +30,7 @@
 {% if combination.combinationreview_set.all|length > 0 %}
 <span rel="aggregateRating">
     <p typeof="AggregateRating">
-        Average rating 
-        <span property="ratingValue">{{ combinations.averageRating|stringformat:".1f" }}</span>
+        Average rating: <span property="ratingValue">5</span>, based on
         {% with combination.combinationreview_set.all|length as reviewCount %}
             from <span property="reviewCount">{{ reviewCount }}
             </span> review{{ reviewCount|pluralize }}
@@ -76,5 +75,11 @@
 {% endblock %}
 
 {% block footer %}
-    Created by {{ combination.user }} on {{ combination.date }}
+    <p>
+    <span vocab="http://schema.org" typeof="CreativeWork">
+    This alcohol was created by
+    <span property="author">{{ alcohol.user }}</span>
+    on
+    <span property="dateCreated">{{ alcohol.date }}</span></span> 
+</p>
 {% endblock %}

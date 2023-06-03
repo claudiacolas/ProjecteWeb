@@ -9,6 +9,7 @@ class Brand(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
+    image=models.ImageField(upload_to="mycombinations", blank=True, null=True)
     
     class Type(models.IntegerChoices):
         NONE = 0
@@ -29,6 +30,7 @@ class Alcohol(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
+    image=models.ImageField(upload_to="mycombinations", blank=True, null=True)
     
     def __str__(self) -> str:
         return self.name+" of the brand "+self.brand.name
@@ -41,6 +43,7 @@ class Mix(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
+    image=models.ImageField(upload_to="mycombinations", blank=True, null=True)
     
     def __str__(self) -> str:
         return self.name+" of the brand "+self.brand.name
