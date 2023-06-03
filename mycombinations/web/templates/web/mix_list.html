@@ -1,7 +1,7 @@
 {% extends "web/index.html" %}
 
 {% block content %}
-<h1 property="schema:name">
+<h1 property="name">
     Mixs
     {% if user.is_authenticated %}
     <form action="{% url 'web:mix_create' %}" method="post" property="schema:CreateMix">
@@ -13,8 +13,8 @@
 
 <ul>
     {% for mix in mixs %}
-        <li typeof="schema:MixList" resource="#mix{{ mix.id }}">
-            <a href="{% url 'web:mix_detail' mix.id %}" property="schema:MixDetail" typeof="schema:Mix" about="#mix{{ mix.id }}">
+        <li typeof="schema:Product" resource="#mix{{ mix.id }}">
+            <a href="{% url 'web:mix_detail' mix.id %}" property="schema:name" typeof="IndividualProduct" about="#mix{{ mix.id }}">
                 {{ mix.name }}
             </a>
         </li>

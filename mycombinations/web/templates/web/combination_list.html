@@ -1,14 +1,14 @@
 {% extends "web/index.html" %}
 
 {% block content %}
-<h1 property="schema:name">
+<h1 property="name">
     Combinations
 </h1>
 
 <ul>
     {% for combination in latest_combination_list %}
-        <li typeof="schema:CombinationsList" resource="#combination{{ combination.id }}">
-            <a href="{% url 'web:combination_detail' combination.id %}" property="schema:url">
+        <li typeof="schema:recipe" resource="#combination{{ combination.id }}">
+            <a href="{% url 'web:combination_detail' combination.id %}" property="schema:name" typeof="recipe" about="#combination{{ combination.id }}">
                 {{ combination.name }}
             </a>
         </li>
@@ -69,13 +69,13 @@
     {% endif %}
 </h3>
 
-<h1 property="schema:name">Combinations created by me (you can edit them):</h1>
+<h1 property="name">Combinations created by me (you can edit them):</h1>
 {% if user.is_authenticated %}
 <ul>
     {% for combination in latest_combination_list %}
         {% if user == combination.user %}
-        <li typeof="schema:CombinationsList" resource="#combination{{ combination.id }}">
-            <a href="{% url 'web:combination_detail' combination.id %}" property="schema:CombinationDetail" typeof="schema:Recipe" about="#combination{{ combination.id }}">
+        <li typeof="schema:recipe" resource="#combination{{ combination.id }}">
+            <a href="{% url 'web:combination_detail' combination.id %}" property="schema:name" typeof="recipe" about="#combination{{ combination.id }}">
                 {{ combination.name }}
             </a>
         </li>

@@ -1,7 +1,7 @@
 {% extends "web/index.html" %}
 
 {% block content %}
-<h1 property="schema:name">
+<h1 property="name">
     Brands
     {% if user.is_authenticated %}
     <form action="{% url 'web:brand_create' %}" method="post" property="schema:CreateBrand">
@@ -13,8 +13,8 @@
 
 <ul>
     {% for brand in brands %}
-        <li typeof="schema:BrandList" resource="#brand{{ brand.id }}">
-            <a href="{% url 'web:brand_detail' brand.id %}" property="schema:BrandDetail" typeof="schema:Brand" about="#brand{{ brand.id }}">
+        <li typeof="schema:Brand" resource="#brand{{ brand.id }}">
+            <a href="{% url 'web:brand_detail' brand.id %}" property="schema:name" typeof="Brand" about="#brand{{ brand.id }}">
                 {{ brand.name }}
             </a>
         </li>

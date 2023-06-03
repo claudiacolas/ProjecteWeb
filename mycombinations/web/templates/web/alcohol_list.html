@@ -1,7 +1,7 @@
 {% extends "web/index.html" %}
 
 {% block content %}
-<h1 property="schema:name" typeof=""schema:AlcoholsList>
+<h1 property="name">
     Alcohols
     {% if user.is_authenticated %}
     <form action="{% url 'web:alcohol_create' %}" method="post">
@@ -13,8 +13,9 @@
 
 <ul>
     {% for alcohol in alcohols %}
-        <li typeof="schema:AlcoholsDetail" resource="#alcohol{{ alcohol.id }}">
-            <a href="{% url 'web:alcohol_detail' alcohol.id %}" property="schema:url">{{ alcohol.name }}</a>
+        <li typeof="schema:Drug" resource="#alcohol{{ alcohol.id }}">
+            <a href="{% url 'web:alcohol_detail' alcohol.id %}" property="schema:name" typeof="Drug" about="#alcohol{{ alcohol.id }}" >{{ alcohol.name }} </a>
+            <div rel="schema:offers" typeof="schema:Offer" property="availability"href="https://schema.org/InStock">Available in your supermarkets and trusted web pages around <span property="schema:price">20</span></div>
         </li>
     {% empty %}
         <li>Sorry, no alcohols registered yet.</li>
